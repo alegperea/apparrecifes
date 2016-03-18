@@ -1,0 +1,3 @@
+IncaaBundle_peliculas:
+    resource: "@IncaaBundle/Resources/config/routing/peliculas.yml"
+    prefix:   /peliculas

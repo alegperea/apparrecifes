@@ -1,0 +1,163 @@
+{% extends '::base_backend.html.twig' %}
+
+{% block stylesheet %}
+{{ parent() }}
+
+<link rel="stylesheet" href="{{ asset('assets/css/dataTables.tableTools.min.css')}}">
+{% stylesheets '@CoreBundle/Resources/public/css/backend.css'
+               '@CoreBundle/Resources/public/css/jquery_datatables.min.css'
+               '@CoreBundle/Resources/public/css/datatables_bootstrap.css'
+               output='css/backend.css' %}
+<link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
+{% endstylesheets %}
+
+{#<link rel="stylesheet" href="{{ asset('assets/css/dataTables.jqueryui.css')}}">#}
+{% endblock %}
+    
+{% block body %}
+
+<div class="wrapper">
+    <!--=== Header ===-->    
+<div class="header">
+        <!-- Topbar -->
+        <div class="topbar">
+        </div>
+        <!-- End Topbar -->
+        {% set url = app.request.uri  %}
+        <!-- Navbar -->
+        <div class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="fa fa-bars"></span>
+                    </button>
+                    <a class="navbar-brand" href="{{ sys_logo_url | default('#')}}">
+                        <img id="logo-header" style="height: 46px;" src="{{asset(sys_logo)}}" alt="Logo">
+                        {{ sys_logo_txt | default('') }}
+                    </a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-responsive-collapse">
+                    <ul class="nav navbar-nav">
+                        <!-- Home -->   
+                        <li class="dropdown">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                                Peliculas
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- About Pages -->
+                                <li>
+                                    <a href="{{ path('peliculas') }}">
+                                        <i class="fa fa-list"></i>
+                                        Listar
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('peliculas_buscar') }}">
+                                        <i class="fa fa-search"></i>
+                                        Buscar
+                                    </a>
+                                </li>
+                            </ul>                                
+
+                        
+                        {% if is_granted('ROLE_ADMINISTRADOR') %}
+                        <!-- Pages -->                        
+                        <li class="dropdown {% if url != "/" and url != "/usuario/showperfil" %}{% endif %}">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                                Administración
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- About Pages -->
+                                <li class="dropdown-submenu">
+                                    <a href="javascript:void(0);"><i class="fa fa-user"></i>Usuarios</a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="{{path('usuario')}}"><i class="fa fa-list"></i>Listado</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{path('usuario_new')}}"><i class="fa fa-plus"></i>Nuevo</a>
+                                        </li>
+                                    </ul>
+                                <li>
+                                    <a href="{{path('perfil')}}"><i class="fa fa-group"></i>Perfiles</a>
+                                </li>
+                            </ul>    
+                        {% endif %}
+                        <!-- Search Block -->
+                        <!-- Pages -->                        
+                        <li class="dropdown {% if url == "/usuario/showperfil" %}{% endif %}">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                                {{ app.user }}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- About Pages -->
+                                <li>
+                                    <a href="{{ path('usuario_showperfilace') }}">
+                                        <i class="fa fa-user"></i>
+                                        Perfil
+                                    </a>
+                                </li>
+                                <!-- End About Pages -->
+
+                                <!-- Profile Pages -->
+                                <li>
+                                    <a href="{{ path('usuario_logout') }}">
+                                        <i class="fa fa-power-off"></i>
+                                        Logout
+                                    </a>
+                                </li>
+                                <!-- End Profile Pages -->
+
+                            </ul>                                
+                        <!-- Search Block -->
+                        <li>
+                            <i class="search fa fa-search search-btn"></i>
+                            <div class="search-open">
+                                <form action="/peliculas_buscar" method="post">
+                                    <div class="input-group animated fadeInDown">
+                                        <input type="text" name="search" class="form-control" placeholder="Buscar pelicula">
+                                        <span class="input-group-btn">
+                                            <button class="btn-u" type="submit">Ir</button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>    
+                        </li>
+                        <!-- End Search Block -->
+                    </ul>
+                </div><!--/navbar-collapse-->
+            </div>    
+        </div>            
+        <!-- End Navbar -->
+    </div>
+        <!-- End Topbar -->
+        
+        <div class="container">
+            <div class="container content">
+                {% block contenido %}
+                {% endblock %}  
+            </div>
+        </div>
+    </div>
+        
+
+{% endblock %}  
+
+{% block javascripts %}
+{{ parent() }}
+{% javascripts
+                
+                '@CoreBundle/Resources/public/js/jquery.dataTables.min.js'
+                '@CoreBundle/Resources/public/js/datatables_bootstrap.js'
+                '@CoreBundle/Resources/public/js/funciones.js'
+                
+                output='js/backend.js' %}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+<script src="{{ asset('assets/js/dataTables.tableTools.min.js')}}"></script>
+{% endblock %}

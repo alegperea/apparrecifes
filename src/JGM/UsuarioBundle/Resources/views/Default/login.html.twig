@@ -1,0 +1,61 @@
+{% extends '::login.html.twig' %}
+
+{% block title %}Formulario de acceso{% endblock %}
+
+{% block body %}
+<!--=== Content Part ===-->    
+<div class="container">
+    <!--Reg Block-->
+    <div class="reg-block" style="border-top: 2px solid #4765A0;">
+        <div class="reg-block-header">
+            <h2>Sistema Integral</h2>
+        </div>
+        {% if error %}
+            <div class="alert alert-danger fade in alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <strong>Advertencia! </strong> {{ error.message|trans }}
+            </div>
+        {% endif %}
+        <form action="{{ path('usuario_login_check') }}" method="post">
+            <div class="input-group margin-bottom-20">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input type="text" id="username" class="form-control" placeholder="Nombre de Usuario" name="_username" value="{{ last_username }}" size="30" maxlength="2048"/>
+            </div>
+            <div class="input-group margin-bottom-20">
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <input type="password" class="form-control" placeholder="Password" id="password" name="_password" size="30" maxlength="2048"/>
+            </div>
+            <hr>
+            <label for="remember_me" class="checkbox">
+                <input type="checkbox" id="remember_me" name="_remember_me" checked />
+                <p>Recordame!</p>
+            </label>
+
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <button type="submit" class="btn-u btn-block">Ingresar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--End Reg Block-->
+</div>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript">
+        if("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+</script>
+
+<!-- inline scripts related to this page -->
+
+<script type="text/javascript">
+        function show_box(id) {
+         jQuery('.widget-box.visible').removeClass('visible');
+         jQuery('#'+id).addClass('visible');
+        }
+</script>
+
+{% endblock %}
+

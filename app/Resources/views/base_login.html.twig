@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> 
+<html lang="es"> <!--<![endif]-->  
+<head>
+    <title>{%block title %}INCAA - Sistema de gestión de peliculas{%endblock%}</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+{% block stylesheet %}
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="{{ asset('assets/plugins/line-icons/line-icons.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/font-awesome/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/flexslider/flexslider.css')}}">  
+    <link rel="stylesheet" href="{{ asset('assets/plugins/parallax-slider/css/parallax-slider.css')}}">
+
+    <!-- CSS Theme -->    
+    <link rel="stylesheet" href="{{ asset('assets/css/themes/dark-blue.css')}}" id="style_color">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="{{ asset('assets/css/custom.css')}}">
+
+{% endblock %}
+
+</head>	
+    <body class="theme-blue">
+    {% block body %}
+
+    {% endblock %}
+    
+{% block javascripts %}
+<!-- JS Global Compulsory -->			
+<script type="text/javascript" src="{{asset('assets/plugins/jquery-1.10.2.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/plugins/jquery-migrate-1.2.1.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+<!-- JS Implementing Plugins -->
+<script type="text/javascript" src="{{asset('assets/plugins/back-to-top.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/plugins/flexslider/jquery.flexslider-min.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/plugins/parallax-slider/js/modernizr.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/plugins/parallax-slider/js/jquery.cslider.js')}}"></script>
+<!-- JS Page Level -->           
+<script type="text/javascript" src="{{asset('assets/js/app.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/js/pages/index.js')}}"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+      	App.init();
+        App.initSliders();
+        Index.initParallaxSlider();        
+    });
+</script>
+<!--[if lt IE 9]>
+    <script src="assets/plugins/respond.js"></script>
+    <script src="assets/plugins/html5shiv.js"></script>    
+<![endif]-->
+{% endblock %}
+    </body>
+</html>
