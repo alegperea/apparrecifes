@@ -1,3 +1,7 @@
 AgpBundle_default:
     resource: "@AgpBundle/Resources/config/routing/default.yml"
     prefix:   /
+
+agp_cliente:
+    resource: "@AgpBundle/Resources/config/routing/cliente.yml"
+    prefix:   /cliente

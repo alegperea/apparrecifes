@@ -37,7 +37,7 @@ class Cliente
     * @var string
     *
     * @ORM\Column(name="contacto", type="string", length=255)
-    * @Assert\NotBlank(message="El nombre no puede estar en blanco")
+    * @Assert\NotBlank(message="El contacto no puede estar en blanco")
     */
    private $contacto;
    
@@ -45,7 +45,7 @@ class Cliente
    * @var string
    *
    * @ORM\Column(name="direccion", type="string", length=255)
-   * @Assert\NotBlank(message="El nombre no puede estar en blanco")
+   * @Assert\NotBlank(message="la direccion no puede estar en blanco")
    */
    private $direccion;
 
@@ -54,7 +54,7 @@ class Cliente
     * @var string
     *
     * @ORM\Column(name="tipo", type="string", length=255)
-    * @Assert\NotBlank(message="El nombre no puede estar en blanco")
+    * @Assert\NotBlank(message="El tipo no puede estar en blanco")
     */
    private $tipo;
    
@@ -62,7 +62,7 @@ class Cliente
     * @var string
     *
     * @ORM\Column(name="modalidad_pago", type="string", length=255)
-    * @Assert\NotBlank(message="El nombre no puede estar en blanco")
+    * @Assert\NotBlank(message="La modalidad de pago no puede estar en blanco")
     */
    private $modalidadPago;
 

@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
- * JGM\AgpBundle\Entity\Cliente
+ * JGM\AgpBundle\Entity\Producto
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="JGM\AgpBundle\Entity\ProductoRepository")

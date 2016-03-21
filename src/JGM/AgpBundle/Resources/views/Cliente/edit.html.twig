@@ -1,0 +1,33 @@
+{% extends 'CarrerasBundle:Carrera:_layout.html.twig' %}
+{% form_theme form 'CarrerasBundle:Default:form.html.twig' %}
+
+{% block containerHeader %}
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="content-box">
+      <div class="content-box-header">
+        <h2 class="title">Lugar:<span> modificar</span></h2>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block contenidoBody %}
+  <div class="row-fluid">
+    <div class="container-fluid">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="content-box">
+          <div class="content-box-header">
+            <h3 class="title title-item">Datos del Area</h3>
+          </div>
+          <form accept-charset="UTF-8" enctype="multipart/form-data" method="post" action="{{ path('cliente_update', {'id' : entity.id }) }}">
+            {{ form_widget(form) }}
+            <p class="botones text-right content-bottom">
+              <a href="{{ path('cliente') }}" class="guardar btn btn-info">Volver</a>
+              <input type="submit" class="guardar btn btn-success" value="Guardar" />
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

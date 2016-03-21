@@ -1,0 +1,34 @@
+{% extends 'CarrerasBundle:Carrera:_layout.html.twig' %}
+
+{% block containerHeader %}
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="content-box">
+      <div class="content-box-header">
+        <h2 class="title">Lugar:<span> propiedades</span></h2>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block contenidoBody %}
+  <div class="row-fluid">
+    <div class="container-fluid">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="content-box">
+          <div class="content-box-header">
+            <h3 class="title title-item">Lugar donde presta servicios</h3>
+          </div>
+          <ul class="list-group">
+            <li class="list-group-item"><strong>{{ entity }}</strong></li>
+          </ul>
+        </div>
+
+        <p class="botones text-right content-bottom">
+          <a href="{{ path('lugar_edit', {'id': entity.id })}}" class="btn btn-success">Editar</a>
+          <a href="{{ path('lugar')}}" class="btn btn-info">Volver</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
