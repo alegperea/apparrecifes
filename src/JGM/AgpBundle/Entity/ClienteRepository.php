@@ -14,8 +14,8 @@ class ClienteRepository extends EntityRepository
 {
     public function findAll() {
         return $this->getEntityManager()
-                ->createQuery("SELECT e
-                    FROM UsuarioBundle:Usuario e")
+                ->createQuery("SELECT c
+                    FROM AgpBundle:Cliente c")
                 ->getResult();
     }
     

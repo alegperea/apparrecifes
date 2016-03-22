@@ -22,7 +22,7 @@
         <tbody>
           {% for entity in entities %}
             <tr>
-              <td><a href="{{ path('cliente_show', {'id':entity.id }) }}">{{ entity }}</a></td>
+              <td><a href="{{ path('cliente_show', {'id':entity.id }) }}">{{ entity.nombre }}</a></td>
               <td>
                 <a href="{{ path('cliente_show', {'id':entity.id }) }}">Mostrar</a>
                 <a href="{{ path('cliente_edit', {'id':entity.id }) }}">Editar</a>

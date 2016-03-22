@@ -1,31 +1,31 @@
-{% extends 'CarrerasBundle:Carrera:_layout.html.twig' %}
+{% extends 'AgpBundle:Default:_layout.html.twig' %}
 
-{% block containerHeader %}
+{% block header %}
   <div class="col-xs-12 col-sm-12 col-md-12">
     <div class="content-box">
       <div class="content-box-header">
-        <h2 class="title">Lugar:<span> propiedades</span></h2>
+        <h2 class="title">Cliente:<span> propiedades</span></h2>
       </div>
     </div>
   </div>
 {% endblock %}
 
-{% block contenidoBody %}
+{% block contenido %}
   <div class="row-fluid">
     <div class="container-fluid">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="content-box">
           <div class="content-box-header">
-            <h3 class="title title-item">Lugar donde presta servicios</h3>
+            <h3 class="title title-item">Datos del cliente</h3>
           </div>
           <ul class="list-group">
-            <li class="list-group-item"><strong>{{ entity }}</strong></li>
+            <li class="list-group-item"><strong>{{ entity.nombre }}</strong></li>
           </ul>
         </div>
 
         <p class="botones text-right content-bottom">
-          <a href="{{ path('lugar_edit', {'id': entity.id })}}" class="btn btn-success">Editar</a>
-          <a href="{{ path('lugar')}}" class="btn btn-info">Volver</a>
+          <a href="{{ path('cliente_edit', {'id': entity.id })}}" class="btn btn-success">Editar</a>
+          <a href="{{ path('cliente')}}" class="btn btn-info">Volver</a>
         </p>
       </div>
     </div>
