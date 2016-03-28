@@ -44,7 +44,7 @@ class ProductoController extends Controller {
 
 	$this->setFlash('success', 'Producto creado correctamente');
 
-	return $this->redirect($this->generateUrl('producto_show', array('id' => $entity->getId())));
+	return $this->redirect($this->generateUrl('producto'));
       }
 
       return $this->render('AgpBundle:Producto:new.html.twig', array(
@@ -182,7 +182,7 @@ class ProductoController extends Controller {
 	$em->flush();
 
 	$this->setFlash('success', 'Los cambios se han realizado con éxito');
-	return $this->redirect($this->generateUrl('producto_edit', array('id' => $id)));
+	return $this->redirect($this->generateUrl('producto'));
       }
 
       $this->setFlash('error', 'Ha ocurrido un error');
