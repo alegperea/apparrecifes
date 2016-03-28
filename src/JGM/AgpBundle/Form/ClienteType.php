@@ -40,12 +40,18 @@ class ClienteType extends AbstractType
                     ),
                 
             ))
-            ->add('modalidadPago',  'text', array(
-                
-                'attr' => array(
-                        'class' => 'form-control col-md-7 col-xs-12',        
-                    ),
-            ));
+            ->add('modalidadPago', 'choice', array(
+		    'choices' => array(
+			'Contra entrega' => 'Contra entrega',
+			'Reembolso' => 'Reembolso',
+			'Mes vencido' => 'Mes vencido',
+                        'Cta Cte' => 'Cta Cte',
+		    ),
+		    'expanded' => true,
+		    'label' => 'Seleccione opcion',
+		//    'empty_value' => 'Seleccione Nivel',
+		     'required' => true
+		));
 
         
     }

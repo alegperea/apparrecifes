@@ -1,36 +1,52 @@
 {% extends '::backend.html.twig' %}
 
 {% block contenido %}
-  <div class="col-xs-12 col-sm-12 col-md-12">
-    <form action="{{ path('cliente') }}" method="post" class="list_form" name="list_form" enctype="multipart/form-data"  accept-charset="UTF-8">  
-        <table border="0" width="100%" class="table">
-          <tr class='table-header'>
-            <td>
-              <h2>Lugares:<span> Listado</span></h2>           
-          </tr>
-        </table>
-    </form>
+<div class="row">
+            <div class="col-md-12">
+                <div class="x_content bs-example-popovers">
+                    {% include ":includes:flashes.html.twig" %}
+                </div>
+              <div class="x_panel">
+                <div class="x_content">
+                  <div class="row">
+                    <div class="clearfix"></div>
+                    
+                    {% for entity in entities %}
+                        
+                        <div class="col-md-4 col-sm-4 col-xs-12 animated fadeInDown">
+                          <div class="well profile_view">
+                            <div class="col-sm-12">
+                              <h4 class="brief"><i>{{ entity.nombre }}</i></h4>
+                              <div class="left col-xs-7">
+                                <h2><i class="fa fa-phone"></i> {{ entity.contacto }}</h2>                                
+                                <ul class="list-unstyled">
+                                    <li> Direccion: </li> {{ entity.direccion }} 
+                                </ul>
+                              </div>
+                              <div class="right col-xs-5 text-center">
+                                <img src="{{ asset('images/user.png') }}" alt="" class="img-circle img-responsive">
+                              </div>
+                            </div>
+                            <div class="col-xs-12 bottom text-center">
 
-    <div class="table-responsive">
-      <table id="tablelist" class="listado table table-hover" width="100%">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for entity in entities %}
-            <tr>
-              <td><a href="{{ path('cliente_show', {'id':entity.id }) }}">{{ entity.nombre }}</a></td>
-              <td>
-                <a href="{{ path('cliente_show', {'id':entity.id }) }}">Mostrar</a>
-                <a href="{{ path('cliente_edit', {'id':entity.id }) }}">Editar</a>
-              </td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div><!--/.table-responsive -->
-  </div>
+                              <div class="col-xs-12 col-sm-6 emphasis">
+                                <a href="{{ path('cliente_show', {'id':entity.id }) }}" class="btn btn-success btn-xs"> <i class="fa fa-user">
+                                                                </i> Ver </a>
+                                <a href="{{ path('cliente_edit', {'id':entity.id }) }}" class="btn btn-primary btn-xs"> <i class="fa fa-user">
+                                                                </i> Editar </a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    {% endfor %}
+                    
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+         
+    
 {% endblock %}

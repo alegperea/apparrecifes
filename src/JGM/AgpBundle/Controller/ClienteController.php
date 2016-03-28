@@ -42,9 +42,9 @@ class ClienteController extends Controller {
 	$em->persist($entity);
 	$em->flush();
 
-	$this->setFlash('ok', 'Cliente creado correctamente');
+	$this->setFlash('success', 'Cliente creado correctamente');
 
-	return $this->redirect($this->generateUrl('cliente_show', array('id' => $entity->getId())));
+	return $this->redirect($this->generateUrl('cliente'));
       }
 
       return $this->render('AgpBundle:Cliente:new.html.twig', array(
@@ -137,7 +137,7 @@ class ClienteController extends Controller {
 
       $editForm = $this->createEditForm($entity);
 
-      return $this->render('CarrerasBundle:Lugar:edit.html.twig', array(
+      return $this->render('AgpBundle:Cliente:edit.html.twig', array(
 		  'entity' => $entity,
 		  'form' => $editForm->createView()
       ));
@@ -181,8 +181,8 @@ class ClienteController extends Controller {
 	$em->persist($entity);
 	$em->flush();
 
-	$this->setFlash('ok', 'Los cambios se han realizado con éxito');
-	return $this->redirect($this->generateUrl('cliente_edit', array('id' => $id)));
+	$this->setFlash('success', 'Los cambios se han realizado con éxito');
+	return $this->redirect($this->generateUrl('cliente'));
       }
 
       $this->setFlash('error', 'Ha ocurrido un error');

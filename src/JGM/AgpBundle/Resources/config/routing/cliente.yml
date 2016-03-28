@@ -1,5 +1,5 @@
 cliente:
-    path:     /
+    path:     /clientes
     defaults: { _controller: "AgpBundle:Cliente:index" }
 cliente_show:
     path:     /{id}/show
@@ -21,7 +21,7 @@ cliente_create_ajax:
 
 cliente_edit:
     path:     /{id}/edit
-    defaults: { _controller: "AgpBundle:Lugar:edit" }
+    defaults: { _controller: "AgpBundle:Cliente:edit" }
 
 cliente_update:
     path:     /{id}/update

@@ -1,33 +1,18 @@
 {% extends 'AgpBundle:Default:_layout.html.twig' %}
 
-{% block header %}
-  <div class="col-xs-12 col-sm-12 col-md-12">
-    <div class="content-box">
-      <div class="content-box-header">
-        <h2 class="title">Cliente:<span> propiedades</span></h2>
-      </div>
-    </div>
-  </div>
-{% endblock %}
-
 {% block contenido %}
-  <div class="row-fluid">
-    <div class="container-fluid">
-      <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="content-box">
-          <div class="content-box-header">
-            <h3 class="title title-item">Datos del cliente</h3>
-          </div>
-          <ul class="list-group">
-            <li class="list-group-item"><strong>{{ entity.nombre }}</strong></li>
-          </ul>
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Datos del Cliente</h2>
+                 <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                {{ entity.nombre }}
+                        {{ entity.nombre }}
+            </div>
         </div>
-
-        <p class="botones text-right content-bottom">
-          <a href="{{ path('cliente_edit', {'id': entity.id })}}" class="btn btn-success">Editar</a>
-          <a href="{{ path('cliente')}}" class="btn btn-info">Volver</a>
-        </p>
-      </div>
     </div>
   </div>
 

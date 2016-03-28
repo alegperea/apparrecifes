@@ -1,0 +1,35 @@
+producto:
+    path:     /productos
+    defaults: { _controller: "AgpBundle:Producto:index" }
+    
+producto_show:
+    path:     /{id}/show
+    defaults: { _controller: "AgpBundle:Producto:show" }
+
+producto_new:
+    path:     /new
+    defaults: { _controller: "AgpBundle:Producto:new" }
+
+producto_create:
+    path:     /create
+    defaults: { _controller: "AgpBundle:Producto:create" }
+    requirements: { _method: post }
+
+producto_create_ajax:
+    path:     /createajax
+    defaults: { _controller: "AgpBundle:Producto:createAjax" }
+    requirements: { _method: post }
+
+producto_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AgpBundle:Producto:edit" }
+
+producto_update:
+    path:     /{id}/update
+    defaults: { _controller: "AgpBundle:Producto:update" }
+    requirements: { _method: post|put }
+
+producto_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AgpBundle:Producto:delete" }
+    requirements: { _method: post|delete }

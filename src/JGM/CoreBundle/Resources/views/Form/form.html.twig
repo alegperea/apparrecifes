@@ -1,3 +1,4 @@
+
 {% block field_errors %}
 {% spaceless %}
     {% if errors|length > 0 %}
@@ -74,7 +75,7 @@
     <div class="radio">
     <label>
         <input class="ace" type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
-        <span class="lbl">{{ label|trans({}, translation_domain) }}</span>
+        <span class="ins">{{ label|trans({}, translation_domain) }}</span>
     </label>
     </div>
 {% endspaceless %}
@@ -96,3 +97,4 @@
     {% endif %}
 {% endspaceless %}
 {% endblock form_label %}
+

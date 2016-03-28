@@ -2,23 +2,29 @@
 {% form_theme form 'CoreBundle:Form:form.html.twig' %}
 
 {% block contenido %}
-  <div class="row-fluid">
-    <div class="container-fluid">
-      <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="content-box">
-          <div class="content-box-header">
-            <h3 class="title title-item">Alta de cliente</h3>
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="x_panel">       
+          <div class="x_title">
+            <h2>Alta de cliente</h2>
+            <div class="clearfix"></div>
           </div>
-          <form accept-charset="UTF-8" class="form-horizontal form-label-left" enctype="multipart/form-data" method="post" action="{{ path('cliente_create') }}">
-            {{ form_widget(form) }}  
-            
-            <p class="botones text-right content-bottom">         
-                <input type="submit" class="guardar btn btn-success" value="Guardar" />
-                <a href="{{ path('cliente') }}" class="guardar btn btn_gris">Volver</a>
-            </p>
-          </form>
-        </div>
+          <div class="x_content">
+            <form accept-charset="UTF-8" class="form-horizontal form-label-left" enctype="multipart/form-data" method="post" action="{{ path('cliente_create') }}">
+              {{ form_widget(form) }}
+              <div class="ln_solid"></div>              
+              
+               <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                      <a href="{{ path('cliente') }}" class="guardar btn btn-primary">Volver</a>
+                      <input type="submit" class="guardar btn btn-success" value="Guardar" />
+                    </div>
+                </div>
+            </form>  
+          </div>
       </div>
     </div>
   </div>
+                
+                              
 {% endblock %}

@@ -5,3 +5,7 @@ AgpBundle_default:
 agp_cliente:
     resource: "@AgpBundle/Resources/config/routing/cliente.yml"
     prefix:   /cliente
+    
+agp_producto:
+    resource: "@AgpBundle/Resources/config/routing/producto.yml"
+    prefix:   /producto

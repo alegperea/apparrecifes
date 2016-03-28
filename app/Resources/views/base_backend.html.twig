@@ -23,8 +23,11 @@
 <!-- Custom styling plus plugins -->
 <link rel="stylesheet" href="{{ asset('assets/css/custom.css')}}">
 <link rel="stylesheet" href="{{ asset('assets/css/maps/jquery-jvectormap-2.0.3.css')}}">
-<link rel="stylesheet" href="{{ asset('assets/ss/icheck/flat/green.css')}}">
+<link rel="stylesheet" href="{{ asset('assets/css/icheck/flat/green.css')}}">
+<link rel="stylesheet" href="{{ asset('assets/css/editor/external/google-code-prettify/prettify.css')}}">
+<link rel="stylesheet" href="{{ asset('assets/css/editor/index.css')}}">
 <link rel="stylesheet" href="{{ asset('assets/css/floatexamples.css')}}">
+<link rel="stylesheet" href="{{ asset('assets/css/select/select2.min.css')}}">
 
 <script type="text/javascript" src="{{asset('assets/js/jquery.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('assets/js/nprogress.js')}}"></script>
@@ -73,8 +76,25 @@
 <script type="text/javascript" src="{{asset('assets/js/flot/jquery.flot.stack.js')}}"></script>
 <script type="text/javascript" src="{{asset('assets/js/flot/curvedLines.js')}}"></script>
 <script type="text/javascript" src="{{asset('assets/js/flot/jquery.flot.resize.js')}}"></script>
+      <!-- select2 -->
+<script type="text/javascript" src="{{asset('assets/js/tags/jquery.tagsinput.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/js/select/select2.full.js')}}"></script>
+      <!-- select2 -->
+
 <script>
+
     $(document).ready(function() {
+        
+              $(".select2_single").select2({
+        placeholder: "Select a state",
+        allowClear: true
+      });
+      $(".select2_group").select2({});
+      $(".select2_multiple").select2({
+        maximumSelectionLength: 4,
+        placeholder: "With Max Selection limit 4",
+        allowClear: true
+      });
       // [17, 74, 6, 39, 20, 85, 7]
       //[82, 23, 66, 9, 99, 6, 2]
       var data1 = [
@@ -304,6 +324,7 @@
         $('#reportrange').data('daterangepicker').remove();
       });
     });
+
 </script>
 <script>
   NProgress.done();
