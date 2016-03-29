@@ -3,9 +3,7 @@
 namespace JGM\AgpBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use Symfony\Component\Validator\Constraints as Assert;
-
 
 /**
  * JGM\AgpBundle\Entity\Producto
@@ -13,9 +11,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="JGM\AgpBundle\Entity\ProductoRepository")
  */
-class Producto 
-{
-   
+class Producto {
+
     /**
      * @var integer $id
      *
@@ -24,78 +21,70 @@ class Producto
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
-    /**
-    * @var string
-    *
-    * @ORM\Column(name="nombre", type="string", length=255)
-    * @Assert\NotBlank(message="El nombre no puede estar en blanco")
-    */
-   private $nombre;
 
     /**
-    * @var string
-    *
-    * @ORM\Column(name="categoria", type="string", length=255)
-    * @Assert\NotBlank(message="La categoria no puede estar en blanco")
-    */
-   private $categoria;
-   
-   /**
-   * @var string
-   *
-   * @ORM\Column(name="precio", type="integer")
-   * @Assert\NotBlank(message="El precio no puede estar en blanco")
-   */
-   private $precio;
-   
+     * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=255)
+     * @Assert\NotBlank(message="El nombre no puede estar en blanco")
+     */
+    private $nombre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="categoria", type="string", length=255)
+     * @Assert\NotBlank(message="La categoria no puede estar en blanco")
+     */
+    private $categoria;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="precio", type="integer")
+     * @Assert\NotBlank(message="El precio no puede estar en blanco")
+     */
+    private $precio;
+
     /**
      * @ORM\OneToMany(targetEntity="JGM\AgpBundle\Entity\ProductoEntregaReference", mappedBy="producto", cascade={"persist", "remove"})
      */
     private $entrega;
-   
-  
-   function getId() {
-       return $this->id;
-   }
 
-   function getNombre() {
-       return $this->nombre;
-   }
+    function getId() {
+        return $this->id;
+    }
 
-   function getCategoria() {
-       return $this->categoria;
-   }
+    function getNombre() {
+        return $this->nombre;
+    }
 
-   function getPrecio() {
-       return $this->precio;
-   }
+    function getCategoria() {
+        return $this->categoria;
+    }
 
-   function setNombre($nombre) {
-       $this->nombre = $nombre;
-   }
+    function getPrecio() {
+        return $this->precio;
+    }
 
-   function setCategoria($categoria) {
-       $this->categoria = $categoria;
-   }
+    function setNombre($nombre) {
+        $this->nombre = $nombre;
+    }
 
-   function setPrecio($precio) {
-       $this->precio = $precio;
-   }
-   
-   function getEntrega() {
-       return $this->entrega;
-   }
+    function setCategoria($categoria) {
+        $this->categoria = $categoria;
+    }
 
-   function setEntrega($entrega) {
-       $this->entrega = $entrega;
-   }
+    function setPrecio($precio) {
+        $this->precio = $precio;
+    }
 
+    function getEntrega() {
+        return $this->entrega;
+    }
 
+    function setEntrega($entrega) {
+        $this->entrega = $entrega;
+    }
 
-   
-    
-
-    
 }
-

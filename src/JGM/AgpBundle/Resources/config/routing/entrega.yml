@@ -1,0 +1,34 @@
+entrega:
+    path:     /entrega
+    defaults: { _controller: "AgpBundle:Entrega:index" }
+entrega_show:
+    path:     /{id}/show
+    defaults: { _controller: "AgpBundle:Entrega:show" }
+
+entrega_new:
+    path:     /new
+    defaults: { _controller: "AgpBundle:Entrega:new" }
+
+entrega_create:
+    path:     /create
+    defaults: { _controller: "AgpBundle:Entrega:create" }
+    requirements: { _method: post }
+
+entrega_create_ajax:
+    path:     /createajax
+    defaults: { _controller: "AgpBundle:Entrega:createAjax" }
+    requirements: { _method: post }
+
+entrega_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AgpBundle:Entrega:edit" }
+
+entrega_update:
+    path:     /{id}/update
+    defaults: { _controller: "AgpBundle:Entrega:update" }
+    requirements: { _method: post|put }
+
+entrega_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AgpBundle:Entrega:delete" }
+    requirements: { _method: post|delete }

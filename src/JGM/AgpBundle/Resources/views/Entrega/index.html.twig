@@ -1,0 +1,50 @@
+{% extends '::backend.html.twig' %}
+
+
+{% block contenido %}
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Listado de entregas</h2>
+                <a href="{{ path('entrega_new') }}" class="pull-right btn btn-dark"> <i class="glyphicon glyphicon-file">
+                                                                </i> Nueva entrega </a>
+                 <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <table id="example" class="table table-striped responsive-utilities jambo_table">
+                    <thead>
+                        <tr class="headings">            
+                          <th>Fecha </th>
+                          <th>Cliente </th>          
+                          <th>Descuento especial </th>   
+                          <th>Pago realizado </th>  
+                          <th>Limpieza realizada </th>
+                          <th>Cambio de Co2 </th>  
+                          <th class=" no-link last"><span class="nobr">Action</span>
+                          </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      {% for entity in entities %}
+                      <tr>
+                        <td><a href="{{ path('entrega_show', {'id':entity.id }) }}">{{ entity.fecha }}</a></td>
+                        <td><a href="{{ path('entrega_show', {'id':entity.id }) }}">{{ entity.cliente.getNombre }}</a></td>
+                        <td><a href="{{ path('entrega_show', {'id':entity.id }) }}">{{ entity.descuentoEspecial }}</a></td>
+                        <td><a href="{{ path('entrega_show', {'id':entity.id }) }}">{{ entity.pagoRealizado }}</a></td>
+                        <td><a href="{{ path('entrega_show', {'id':entity.id }) }}">{{ entity.limpiezaRealziada }}</a></td>
+                        <td><a href="{{ path('entrega_show', {'id':entity.id }) }}">{{ entity.cambioCo2 }}</a></td>
+        
+                        <td>
+                          <a href="{{ path('entrega_show', {'id':entity.id }) }}">Mostrar</a>
+                          <a href="{{ path('entrega_edit', {'id':entity.id }) }}">Editar</a>
+                        </td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+            </div>
+        </diV>
+    </div>
+</div>
+{% endblock %}

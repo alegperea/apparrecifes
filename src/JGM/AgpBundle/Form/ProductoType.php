@@ -38,10 +38,10 @@ class ProductoType extends AbstractType
                         'Belgian Witbier' => 'Belgian Witbier',
 		    ),
                     'attr' => array(
-                        'class' => 'select2_single form-control',        
+                        'class' => 'col-md-7 col-xs-12 select2_single form-control',        
                     ),
 		    'expanded' => false,
-		    'label' => 'Seleccione opcion',
+		    'label' => 'Seleccione categoría',
 		//    'empty_value' => 'Seleccione Nivel',
 		     'required' => true
 		));

@@ -9,3 +9,7 @@ agp_cliente:
 agp_producto:
     resource: "@AgpBundle/Resources/config/routing/producto.yml"
     prefix:   /producto
+        
+agp_entrega:
+    resource: "@AgpBundle/Resources/config/routing/entrega.yml"
+    prefix:   /entrega
