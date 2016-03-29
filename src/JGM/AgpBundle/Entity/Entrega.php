@@ -39,7 +39,7 @@ class Entrega
     private $cliente;
    
     /**
-     * @ORM\OneToMany(targetEntity="JGM\AgpBundle\Entity\Producto", mappedBy="entrega", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="JGM\AgpBundle\Entity\ProductoEntregaReference", mappedBy="entrega", cascade={"persist", "remove"})
      */
     private $productos;
    

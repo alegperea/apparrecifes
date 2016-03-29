@@ -37,11 +37,8 @@ security:
         - { path: ^/usuario/*, roles: [ROLE_ADMINISTRADOR] }
         - { path: ^/perfil/*, roles: [ROLE_ADMINISTRADOR] }
         - { path: ^/rol/*, roles: [ROLE_ADMINISTRADOR] }
-        - { path: ^/proyecto/*, roles: [ROLE_GESTOR, ROLE_ADMINISTRADOR] }
-        - { path: ^/categoria/*, roles: [ROLE_GESTOR, ROLE_ADMINISTRADOR] }
-        - { path: ^/item/*, roles: [ROLE_GESTOR, ROLE_ADMINISTRADOR] }
-        - { path: ^/comentario/*, roles: [ROLE_GESTOR, ROLE_ADMINISTRADOR] }
-        - { path: ^/eliminarDocumento, roles: [ROLE_GESTOR, ROLE_ADMINISTRADOR] }
-        - { path: ^/eliminarComentario, roles: [ROLE_GESTOR, ROLE_ADMINISTRADOR] }
+        - { path: ^/cliente/*, roles: [ROLE_GESTOR, ROLE_ADMINISTRADOR] }
+        - { path: ^/producto/*, roles: [ROLE_GESTOR, ROLE_ADMINISTRADOR] }
+        - { path: ^/home/*, roles: [ROLE_GESTOR, ROLE_ADMINISTRADOR] }
         - { path: ^/, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/*, roles: IS_AUTHENTICATED_FULLY }

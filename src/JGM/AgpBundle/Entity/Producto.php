@@ -49,6 +49,11 @@ class Producto
    */
    private $precio;
    
+    /**
+     * @ORM\OneToMany(targetEntity="JGM\AgpBundle\Entity\ProductoEntregaReference", mappedBy="producto", cascade={"persist", "remove"})
+     */
+    private $entrega;
+   
   
    function getId() {
        return $this->id;
@@ -77,6 +82,15 @@ class Producto
    function setPrecio($precio) {
        $this->precio = $precio;
    }
+   
+   function getEntrega() {
+       return $this->entrega;
+   }
+
+   function setEntrega($entrega) {
+       $this->entrega = $entrega;
+   }
+
 
 
    
