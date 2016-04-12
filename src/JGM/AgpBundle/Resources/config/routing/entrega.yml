@@ -8,6 +8,10 @@ entrega_show:
 entrega_new:
     path:     /new
     defaults: { _controller: "AgpBundle:Entrega:new" }
+    
+entrega_firmas:
+    path:     /firmas
+    defaults: { _controller: "AgpBundle:Entrega:firmas" }
 
 entrega_create:
     path:     /create

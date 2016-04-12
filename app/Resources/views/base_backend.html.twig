@@ -52,8 +52,7 @@
     <script type="text/javascript" src="{{asset('assets/js/nprogress.js')}}"></script>    
     <!-- JS Global Compulsory -->			
     <script type="text/javascript" src="{{asset('assets/js/bootstrap.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('assets/js/gauge/gauge.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('assets/js/gauge/gauge_demo.js')}}"></script>
+
       <!-- bootstrap progress js -->
     <script type="text/javascript" src="{{asset('assets/js/progressbar/bootstrap-progressbar.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/js/nicescroll/jquery.nicescroll.min.js')}}"></script>
@@ -62,7 +61,7 @@
     <script type="text/javascript" src="{{asset('assets/js/moment/moment.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/js/datepicker/daterangepicker.js')}}"></script>
       <!-- chart js -->       
-    <script type="text/javascript" src="{{asset('assets/js/chartjs/chart.min.js')}}"></script>
+
 
     <script type="text/javascript" src="{{asset('assets/js/custom.js')}}"></script>
 
@@ -85,7 +84,6 @@
           <!-- select2 -->
 
     <script>
-        
         
         var asInitVals = new Array();
         $(document).ready(function() {
@@ -234,45 +232,7 @@
         icons.play();
     </script>
      <!-- dashbord linegraph -->
-    <script>
-        Chart.defaults.global.legend = {
-          enabled: false
-        };
-
-        var data = {
-          labels: [
-            "Symbian",
-            "Blackberry",
-            "Other",
-            "Android",
-            "IOS"
-          ],
-          datasets: [{
-            data: [15, 20, 30, 10, 30],
-            backgroundColor: [
-              "#BDC3C7",
-              "#9B59B6",
-              "#455C73",
-              "#26B99A",
-              "#3498DB"
-            ],
-            hoverBackgroundColor: [
-              "#CFD4D8",
-              "#B370CF",
-              "#34495E",
-              "#36CAAB",
-              "#49A9EA"
-            ]
-
-          }]
-        };
-
-        var canvasDoughnut = new Chart(document.getElementById("canvas1"), {
-          type: 'doughnut',
-          tooltipFillColor: "rgba(51, 51, 51, 0.55)",
-          data: data
-        });
-    </script>
+    
     <!-- /dashbord linegraph -->
       <!-- datepicker -->
     <script type="text/javascript">
