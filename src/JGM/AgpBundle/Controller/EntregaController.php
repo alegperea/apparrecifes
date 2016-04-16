@@ -34,18 +34,10 @@ class EntregaController extends Controller {
      */
     public function createAction(Request $request) {
 
-        //    print_r($request->request->all());
-        //    exit();
-
         $entity = new Entrega();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
-        
-        if (file_get_contents("php://input")) {
-            // read input stream   
-            $data = file_get_contents("php://input");
-            $this->canvasUpload($data);
-        }
+  
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -54,7 +46,7 @@ class EntregaController extends Controller {
 
             $this->setFlash('success', 'Entrega creado correctamente');
 
-            return $this->redirect($this->generateUrl('entrega'));
+            return $this->redirect($this->generateUrl('entrega_stepasigproductos', array('id' => $entity->getId())));
         }
 
         return $this->render('AgpBundle:Entrega:new.html.twig', array(
@@ -63,8 +55,59 @@ class EntregaController extends Controller {
         ));
     }
 
+     /**
+     * Displays a form to create a new Entrega entity.
+     *
+     */
+    public function stepAsigProductosAction($id) {
+        $request = $this->get('request');
+        $em = $this->getDoctrine()->getManager();
+        $productos = $em->getRepository('AgpBundle:Producto')->findAll(); 
+        $entity = $em->getRepository('AgpBundle:Entrega')->find($id);        
+        if ($request->getMethod() == 'POST') {            
+            $idproductos = $request->get('chk_productos');
+            foreach($idproductos as $producto):
+                $productoEntregaRef = new \JGM\AgpBundle\Entity\ProductoEntregaReference();
+                $objproducto = $em->getRepository('AgpBundle:Producto')->find($producto);
+                $productoEntregaRef->setProducto($objproducto);
+                $productoEntregaRef->setEntrega($entity);
+                $productoEntregaRef->setCantidad($entity->getCliente()->getCantidadPermitida());  
+                $em->persist($productoEntregaRef);
+                $em->flush();                    
+            
+            endforeach;            
+            
+            
+            $this->setFlash('success', 'Asignacion de productos correctamente');
+            return $this->redirect($this->generateUrl('entrega_stepconfirmfirma', array('id' => $entity->getId())));
+
+        }
+        
+        return $this->render('AgpBundle:Entrega:_stepAsigProductos.html.twig', array(
+                    'entity' => $entity,
+                    'productos' => $productos
+            
+        ));
+    }
+    
+    public function stepConfirmFirmaAction($id) {       
+        $em = $this->getDoctrine()->getManager();
+        
+        $entity = $em->getRepository('AgpBundle:Entrega')->find($id);
+        
+        return $this->render('AgpBundle:Entrega:_stepConfirmFirma.html.twig', array(
+                    'entity' => $entity            
+        ));
+    }
+    
     private function canvasUpload($data) {
 
+                     
+        if (file_get_contents("php://input")) {
+            // read input stream   
+            $data = file_get_contents("php://input");
+            $this->canvasUpload($data);
+        }
         // filtering and decoding code adapted from
         // http://stackoverflow.com/questions/11843115/uploading-canvas-context-as-image-using-ajax-and-php?lq=1
         // Filter out the headers (data:,) part.
@@ -117,15 +160,13 @@ class EntregaController extends Controller {
         return $form;
     }
 
-    /**
-     * Displays a form to create a new Entrega entity.
-     *
-     */
-    public function newAction() {
+   
+    
+    public function stepDatosCargaAction() {
         $entity = new Entrega();
         $form = $this->createCreateForm($entity);
 
-        return $this->render('AgpBundle:Entrega:new.html.twig', array(
+        return $this->render('AgpBundle:Entrega:_stepDatosCarga.html.twig', array(
                     'entity' => $entity,
                     'form' => $form->createView(),
         ));

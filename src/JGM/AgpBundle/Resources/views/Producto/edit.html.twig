@@ -10,7 +10,7 @@
             <div class="clearfix"></div>
           </div>
           <div class="x_content">
-            <form accept-charset="UTF-8" class="form-horizontal form-label-left" enctype="multipart/form-data" method="post" action="{{ path('producto_edit') }}">
+            <form accept-charset="UTF-8" class="form-horizontal form-label-left" enctype="multipart/form-data" method="post" action="{{ path('producto_update', { 'id': entity.id  }) }}">
               {{ form_widget(form) }}
               <div class="ln_solid"></div>              
               

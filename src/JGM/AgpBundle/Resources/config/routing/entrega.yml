@@ -5,13 +5,17 @@ entrega_show:
     path:     /{id}/show
     defaults: { _controller: "AgpBundle:Entrega:show" }
 
-entrega_new:
-    path:     /new
-    defaults: { _controller: "AgpBundle:Entrega:new" }
+entrega_stepdatoscarga:
+    path:     /datoscarga
+    defaults: { _controller: "AgpBundle:Entrega:stepDatosCarga" }
     
-entrega_firmas:
-    path:     /firmas
-    defaults: { _controller: "AgpBundle:Entrega:firmas" }
+entrega_stepasigproductos:
+    path:     /{id}/asigproductos
+    defaults: { _controller: "AgpBundle:Entrega:stepAsigProductos" }
+    
+entrega_stepconfirmfirma:
+    path:     /{id}/confirmacion
+    defaults: { _controller: "AgpBundle:Entrega:stepConfirmFirma" }
 
 entrega_create:
     path:     /create

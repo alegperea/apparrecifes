@@ -130,4 +130,5 @@ class Entrega {
         $this->cambioCo2 = $cambioCo2;
     }
 
+
 }

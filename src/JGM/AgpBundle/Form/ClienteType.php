@@ -40,6 +40,12 @@ class ClienteType extends AbstractType
                     ),
                 
             ))
+            ->add('cantidadPermitida', 'integer', array(
+                'attr' => array(
+                        'class' => 'form-control col-md-7 col-xs-12',        
+                    ),
+                
+            ))
             ->add('modalidadPago', 'choice', array(
 		    'choices' => array(
 			'Contra entrega' => 'Contra entrega',

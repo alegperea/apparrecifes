@@ -63,6 +63,15 @@ class Cliente {
     private $modalidadPago;
     
     
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cantidad_permitida", type="integer")
+     * @Assert\NotBlank(message="La cantidad permitida no puede estar en blanco")
+     */
+    private $cantidadPermitida;
+    
+    
 
     public function getId() {
         return $this->id;
@@ -107,5 +116,15 @@ class Cliente {
     public function setModalidadPago($modalidadPago) {
         $this->modalidadPago = $modalidadPago;
     }
+    
+    function getCantidadPermitida() {
+        return $this->cantidadPermitida;
+    }
+
+    function setCantidadPermitida($cantidadPermitida) {
+        $this->cantidadPermitida = $cantidadPermitida;
+    }
+
+
 
 }

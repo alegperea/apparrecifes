@@ -1,76 +1,70 @@
 {% extends 'AgpBundle:Default:_layout.html.twig' %}
-{% form_theme form 'CoreBundle:Form:form.html.twig' %}
-
 {% block contenido %}
-    <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="x_panel">       
-                <div class="x_title">
-                    <h2>Nueva entrega</h2>
-                    <div class="clearfix"></div>
+    <div class="x_panel">       
+        <div class="x_title">
+            <h2>Nueva entrega</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <div id="wizard" class="form_wizard wizard_horizontal">
+                <ul class="wizard_steps col-md-12 col-sm-12 col-xs-12" >
+                    <li>
+                        <a href="#step-1" >
+                            <span class="step_no">1</span>
+                            <span class="step_descr">
+                                Carga de datos                                       
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#step-2" >
+                            <span class="step_no">2</span>
+                            <span class="step_descr">
+                                Asignación de productos
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#step-3" class="selected">
+                            <span class="step_no">3</span>
+                            <span class="step_descr">
+                                Confirmación
+                            </span>
+                        </a>
+                    </li>
+
+                </ul>
+                <div class="ln_solid col-md-12 col-sm-12 col-xs-12"></div>
+                <div class="col-sm-8">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <canvas id="canvas" style="border:1px solid;" width="500" height="200"></canvas>
+                        <input type="color" id="color" value="#000">                   
+                        <a class="btn btn-info" id="bt-clear">limpiar</a>
+                    </div>
                 </div>
-                <div class="x_content">
-
-                    <div id="wizard" class="form_wizard wizard_horizontal">
-                        <ul class="wizard_steps">
-                            <li>
-                                <a href="#step-1" class="selected">
-                                    <span class="step_no">1</span>
-                                    <span class="step_descr">
-                                        Carga de datos<br />
-                                        <small>datos de facturación</small>
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#step-2">
-                                    <span class="step_no">2</span>
-                                    <span class="step_descr">
-                                        Step 2<br />
-                                        <small>Step 2 description</small>
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#step-3">
-                                    <span class="step_no">3</span>
-                                    <span class="step_descr">
-                                        Step 2<br />
-                                        <small>Step 3 description</small>
-                                    </span>
-                                </a>
-                            </li>
-
-                        </ul>
-                        <div class="ln_solid"></div>      
-                        <div id="step-1">
-                            {% include "AgpBundle:Entrega:_stepDatosCarga.html.twig" %}
-                        </div>
-                        
-
-
-
-
+                <div class="ln_solid col-md-12 col-sm-12 col-xs-12"></div>   
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-10">
+                        <a href="{{ path('entrega') }}" class="guardar btn btn-primary">Volver</a>
+                        <input type="submit" id="bt-save" class="guardar btn btn-success" value="Confirmar" />
                     </div>
                 </div>
             </div>
         </div>
     </div>
+       
+
 
 {% endblock %}
 
 {% block javascripts %}
-    
     {{ parent() }}
     <script type="text/javascript" src="{{asset('assets/js/wizard/jquery.smartWizard.js')}}"></script>
     <script>
 
         $(document).ready(function () {
-
-
-
             // Smart Wizard
-           // $('#wizard').smartWizard();
+            // $('#wizard').smartWizard();
 
             function onFinishCallback() {
                 $('#wizard').smartWizard('showMessage', 'Finish Clicked');

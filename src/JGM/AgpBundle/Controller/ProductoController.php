@@ -21,7 +21,7 @@ class ProductoController extends Controller {
     public function indexAction() {
 
       $em = $this->getDoctrine()->getManager();
-      $entities = $em->getRepository('AgpBundle:Producto')->findAll();         
+      $entities = $em->getRepository('AgpBundle:Producto')->findAll();        
       
       return $this->render('AgpBundle:Producto:index.html.twig', array(
 		  'entities' => $entities,
@@ -137,7 +137,7 @@ class ProductoController extends Controller {
 
       $editForm = $this->createEditForm($entity);
 
-      return $this->render('CarrerasBundle:Producto:edit.html.twig', array(
+      return $this->render('AgpBundle:Producto:edit.html.twig', array(
 		  'entity' => $entity,
 		  'form' => $editForm->createView()
       ));

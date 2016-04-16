@@ -16,7 +16,8 @@
                     <thead>
                         <tr class="headings">            
                           <th>Nombre </th>
-                          <th>precio </th>                      
+                          <th>Precio </th>
+                          <th>Stock </th>
                           <th class=" no-link last"><span class="nobr">Action</span>
                           </th>
                         </tr>
@@ -26,7 +27,7 @@
                       <tr>
                         <td><a href="{{ path('producto_show', {'id':entity.id }) }}">{{ entity.nombre }}</a></td>
                         <td><a href="{{ path('producto_show', {'id':entity.id }) }}">{{ entity.precio }}</a></td>
-        
+                        <td><a href="{{ path('producto_show', {'id':entity.id }) }}">{{ entity.stock }} Lts.</a></td>
                         <td>
                           <a href="{{ path('producto_show', {'id':entity.id }) }}">Mostrar</a>
                           <a href="{{ path('producto_edit', {'id':entity.id }) }}">Editar</a>
