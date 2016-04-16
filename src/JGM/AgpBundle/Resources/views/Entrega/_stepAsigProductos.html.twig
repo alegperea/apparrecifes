@@ -93,7 +93,7 @@
                                 <div class="col-md-6 col-xs-12">
                                     <div class="x_panel">
                                         <div class="x_title">
-                                            <h2>Sellección de productos</h2>
+                                            <h2>Selección de productos</h2>
                                             <ul class="nav navbar-right panel_toolbox">
                                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                                 </li>                                    
@@ -114,7 +114,7 @@
                                         <div class="x_content">
 
                                             <ul class="to_do">
-                                                {% for producto in productos %} 
+                                                {% for producto in entity %} 
                                                     <li>
                                                         <p>
                                                             <input type="checkbox" class="flat" name="chk_productos[]" value="{{ producto.id }}"> {{ producto.nombre }} | <small> {{ producto.stock }} Lts.</small>

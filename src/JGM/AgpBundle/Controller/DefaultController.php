@@ -8,6 +8,10 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('AgpBundle:Default:index.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $entities = $em->getRepository('AgpBundle:Producto')->findAll(); 
+        return $this->render('AgpBundle:Default:index.html.twig', array(
+		  'entities' => $entities
+        ));
     }
 }
