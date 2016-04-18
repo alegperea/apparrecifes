@@ -73,10 +73,8 @@ class EntregaController extends Controller {
                 $productoEntregaRef->setEntrega($entity);
                 $productoEntregaRef->setCantidad($entity->getCliente()->getCantidadPermitida());  
                 $em->persist($productoEntregaRef);
-                $em->flush();                    
-            
-            endforeach;            
-            
+                $em->flush(); 
+            endforeach; 
             
             $this->setFlash('success', 'Asignacion de productos correctamente');
             return $this->redirect($this->generateUrl('entrega_stepconfirmfirma', array('id' => $entity->getId())));
@@ -92,22 +90,26 @@ class EntregaController extends Controller {
     
     public function stepConfirmFirmaAction($id) {       
         $em = $this->getDoctrine()->getManager();
-        
+        $request = $this->get('request');
         $entity = $em->getRepository('AgpBundle:Entrega')->find($id);
-        
+        if (file_get_contents("php://input")) {
+            // read input stream
+            $data = file_get_contents("php://input");
+            exit("asdas");
+            $this->canvasUpload($data);
+            
+        }
+        if ($request->getMethod() == 'POST') {      
+            $this->setFlash('success', 'Se confirmo la entrega');
+            return $this->redirect($this->generateUrl('entrega'));
+        }
         return $this->render('AgpBundle:Entrega:_stepConfirmFirma.html.twig', array(
                     'entity' => $entity            
         ));
     }
     
     private function canvasUpload($data) {
-
-                     
-        if (file_get_contents("php://input")) {
-            // read input stream   
-            $data = file_get_contents("php://input");
-            $this->canvasUpload($data);
-        }
+                            
         // filtering and decoding code adapted from
         // http://stackoverflow.com/questions/11843115/uploading-canvas-context-as-image-using-ajax-and-php?lq=1
         // Filter out the headers (data:,) part.
@@ -116,14 +118,14 @@ class EntregaController extends Controller {
         $decodedData = base64_decode($filteredData);
 
         // store in server
-        $fic_name = 'snapshot' . rand(1000, 9999) . '.png';
-        $fp = fopen('./firmas/' . $fic_name, 'wb');
+        $fic_name = 'firma' . rand(1000, 9999) . '.png';
+        $fp = fopen('firmas/' . $fic_name, 'wb');
         $ok = fwrite($fp, $decodedData);
         fclose($fp);
         if ($ok)
-            echo $fic_name;
+            return $fic_name;
         else
-            echo "ERROR";
+            return false;
     }
 
     /**

@@ -23,7 +23,7 @@ class UsuarioType extends AbstractType {
             $builder
                     ->add('username', 'text', array(
                         'attr' => array(
-                            'class' => 'input-xlarge',
+                            'class' => 'form-control',
                             'placeholder' => 'Nombre de Usuario'
                         )
                     ))
@@ -31,30 +31,37 @@ class UsuarioType extends AbstractType {
                         'type' => 'password',
                         'invalid_message' => 'Las dos contraseñas deben coincidir',
                         'first_options' => array('label' => 'Contraseña', 'attr' => array(
-                                'class' => 'input-xlarge',
+                                'class' => 'form-control',
                             )),
                         'second_options' => array('label' => 'Repetir Contraseña', 'attr' => array(
-                                'class' => 'input-xlarge',
+                                'class' => 'form-control',
                             )),
+                        'attr' => array(
+                            'class' => 'form-control',            
+                        )
                     ))
                     ->add('enviar_mail','checkbox',array(
                         'label' => 'Enviar al mail la contraseña ingresada?',
                         'required' => false,
                         'mapped' => false,
-                        'label_attr' => array('colsm' => 'col-sm-4')
+                        'label_attr' => array('colsm' => 'col-sm-4'),
+                        'attr' => array(
+                            'class' => 'form-control'
+              
+                        )
                     ))
             ;
         }
         $builder
                 ->add('nombre', 'text', array(
                     'attr' => array(
-                        'class' => 'input-xlarge',
+                        'class' => 'form-control',
                         'placeholder' => 'Nombre'
                     )
                 ))
                 ->add('apellido', 'text', array(
                     'attr' => array(
-                        'class' => 'input-xlarge',
+                        'class' => 'form-control',
                         'placeholder' => 'Apellido'
                     )
                 ))
@@ -67,32 +74,32 @@ class UsuarioType extends AbstractType {
                         'LC' => 'LIBRETA CIVICA',
                     ),
                     'attr' => array(
-                        'class' => 'input-xlarge',
+                        'class' => 'form-control',
                     )
                 ))
                 ->add('numero_documento', 'text', array(
                     'required'=>false,
                     'attr' => array(
-                        'class' => 'input-xlarge',
+                        'class' => 'form-control',
                         'placeholder' => 'Número de Documento'
                     )
                 ))
                 ->add('email', 'email', array(
                     'attr' => array(
-                        'class' => 'input-xlarge',
+                        'class' => 'form-control',
                         'placeholder' => 'E-mail'
                     )
                 ))
                 ->add('telefono', 'text', array(
                     'required' => false,
                     'attr' => array(
-                        'class' => 'input-xlarge',
+                        'class' => 'form-control',
                         'placeholder' => 'Télefono'
                     )
                 ))
                 ->add('telefonoAlternativo', 'text', array(
                     'attr' => array(
-                        'class' => 'input-xlarge',
+                        'class' => 'form-control',
                         'placeholder' => 'Télefono Alternativo'
                     ),
                     'required' => false
@@ -100,7 +107,7 @@ class UsuarioType extends AbstractType {
                 $perfil_id = $this->usuario->getPerfil()->getId();
                 $builder->add('perfil', 'entity', array(
                             'attr' => array(
-                                'class' => 'input-xlarge',
+                                'class' => 'form-control',
                             ),
                             'class' => 'UsuarioBundle:Perfil',
                             'query_builder' => function(EntityRepository $er) {

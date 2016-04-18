@@ -114,7 +114,7 @@
                                         <div class="x_content">
 
                                             <ul class="to_do">
-                                                {% for producto in entity %} 
+                                                {% for producto in productos %} 
                                                     <li>
                                                         <p>
                                                             <input type="checkbox" class="flat" name="chk_productos[]" value="{{ producto.id }}"> {{ producto.nombre }} | <small> {{ producto.stock }} Lts.</small>

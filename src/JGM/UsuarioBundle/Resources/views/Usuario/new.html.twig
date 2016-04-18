@@ -1,19 +1,29 @@
-{% extends '::backend.html.twig' %}
-{% form_theme form 'CoreBundle:Form:form_unity.html.twig' %}
+{% extends 'AgpBundle:Default:_layout.html.twig' %}
+{% form_theme form 'CoreBundle:Form:form.html.twig' %}
 
 
 {% block contenido %}
-<div class="span12">
-    <div class="well-large">
-        {% include ':includes:flashes.html.twig' %}
-        <form class="sky-form" action="{{ path('usuario_create') }}" method="post" {{ form_enctype(form) }}>
-            <header>Nuevo Usuario</header>
-            <fieldset>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">       
+                <div class="x_title">
+                    <h2>Nuevo usuario</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
                     {% include ':includes:flashes.html.twig' %}
-                    {{ form_widget(form) }}
-                    {% include "CoreBundle:Default:volverGuardar.html.twig" with { 'path' : 'usuario' } %}
-            </fieldset>
-        </form>
+                    <form class="form-horizontal form-label-left" action="{{ path('usuario_create') }}" method="post" {{ form_enctype(form) }}>
+
+                        {% include ':includes:flashes.html.twig' %}
+                        {{ form_widget(form) }}
+                                      <div class="ln_solid"></div>     
+                        {% include "CoreBundle:Default:volverGuardar.html.twig" with { 'path' : 'usuario' } %}
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
     </div>
-</div>
-{% endblock %}
+    {% endblock %}
