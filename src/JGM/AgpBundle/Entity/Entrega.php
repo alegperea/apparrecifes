@@ -41,32 +41,70 @@ class Entrega {
     private $productos;
 
     /**
-     * @var boolean
      *
-     * @ORM\Column(name="descuento_especial", type="boolean", nullable=true)
+     * @ORM\Column(name="descuento_especial", type="integer", length=255, nullable=true)
      */
     private $descuentoEspecial;
 
     /**
-     * @var boolean
      *
-     * @ORM\Column(name="pago_realizado", type="boolean", nullable=true)
+     * @ORM\Column(name="pago_realizado", type="integer", nullable=true)
      */
     private $pagoRealizado;
 
     /**
-     * @var boolean
      *
-     * @ORM\Column(name="limpieza_realizada", type="boolean", nullable=true)
+     * @ORM\Column(name="deuda", type="integer", nullable=true)
+     */
+    private $deuda;
+
+    /**
+     *
+     * @ORM\Column(name="limpieza_realizada", type="integer", nullable=true)
      */
     private $limpiezaRealizada;
 
     /**
-     * @var boolean
      *
-     * @ORM\Column(name="cambio_c02", type="boolean", nullable=true)
+     * @ORM\Column(name="co2_entregados", type="integer")
      */
-    private $cambioCo2;
+    private $co2Entregados;
+
+    /**
+     *
+     * @ORM\Column(name="co2_retirados", type="integer")
+     */
+    private $co2Retirados;
+
+    /**
+     *
+     * @ORM\Column(name="co2_backup", type="integer")
+     */
+    private $co2Backup;
+
+    /**
+     *
+     * @ORM\Column(name="barriles_entregados", type="integer")
+     */
+    private $barrilesEntregados;
+
+    /**
+     *
+     * @ORM\Column(name="barriles_retirados", type="integer")
+     */
+    private $barrilesRetirados;
+
+    /**
+     *
+     * @ORM\Column(name="barriles_cliente", type="integer")
+     */
+    private $barrilesCliente;
+
+    /**
+     *
+     * @ORM\Column(name="observacion", type="text", nullable=true)
+     */
+    private $observacion;
     
     
 
@@ -128,6 +166,70 @@ class Entrega {
 
     public function setCambioCo2($cambioCo2) {
         $this->cambioCo2 = $cambioCo2;
+    }
+
+    function getObservacion() {
+        return $this->observacion;
+    }
+
+    function setObservacion($observacion) {
+        $this->observacion = $observacion;
+    }
+
+    function getDeuda() {
+        return $this->deuda;
+    }
+
+    function getCo2Entregados() {
+        return $this->co2Entregados;
+    }
+
+    function getCo2Retirados() {
+        return $this->co2Retirados;
+    }
+
+    function getCo2Backup() {
+        return $this->co2Backup;
+    }
+
+    function getBarrilesRetirados() {
+        return $this->barrilesRetirados;
+    }
+
+    function getBarrilesCliente() {
+        return $this->barrilesCliente;
+    }
+
+    function setDeuda($deuda) {
+        $this->deuda = $deuda;
+    }
+
+    function setCo2Entregados($co2Entregados) {
+        $this->co2Entregados = $co2Entregados;
+    }
+
+    function setCo2Retirados($co2Retirados) {
+        $this->co2Retirados = $co2Retirados;
+    }
+
+    function setCo2Backup($co2Backup) {
+        $this->co2Backup = $co2Backup;
+    }
+
+    function setBarrilesRetirados($barrilesRetirados) {
+        $this->barrilesRetirados = $barrilesRetirados;
+    }
+
+    function setBarrilesCliente($barrilesCliente) {
+        $this->barrilesCliente = $barrilesCliente;
+    }
+    
+    function getBarrilesEntregados() {
+        return $this->barrilesEntregados;
+    }
+
+    function setBarrilesEntregados($barrilesEntregados) {
+        $this->barrilesEntregados = $barrilesEntregados;
     }
 
 

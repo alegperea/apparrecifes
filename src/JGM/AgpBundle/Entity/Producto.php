@@ -46,18 +46,21 @@ class Producto {
      */
     private $precio;
 
+    
+        /**
+     * @var string
+     *
+     * @ORM\Column(name="litros", type="integer")
+     * @Assert\NotBlank(message="Los litros no puede estar en blanco")
+     */
+    private $litros;
+    
+    
     /**
      * @ORM\OneToMany(targetEntity="JGM\AgpBundle\Entity\ProductoEntregaReference", mappedBy="producto", cascade={"persist", "remove"})
      */
     private $entrega;
-    
-     /**
-     * @var string
-     *
-     * @ORM\Column(name="stock", type="integer")
-     * @Assert\NotBlank(message="El stock no puede estar en blanco")
-     */
-    private $stock;
+
 
     function getId() {
         return $this->id;
@@ -102,6 +105,14 @@ class Producto {
     function setStock($stock) {
         $this->stock = $stock;
     }
+    function getLitros() {
+        return $this->litros;
+    }
+
+    function setLitros($litros) {
+        $this->litros = $litros;
+    }
+
 
 
 }

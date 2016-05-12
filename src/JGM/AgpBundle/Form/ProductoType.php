@@ -29,12 +29,7 @@ class ProductoType extends AbstractType
                     ),
                 
             ))
-            ->add('stock', 'integer', array(
-                'attr' => array(
-                        'class' => 'form-control col-md-7 col-xs-12',        
-                    ),
-                
-            )) 
+      
             ->add('categoria', 'choice', array(
 		    'choices' => array(
 			'Cream Ale' => 'Cream Ale',
