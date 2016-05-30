@@ -22,7 +22,12 @@ class ProductoType extends AbstractType
                     ),
                 
             ))
-        
+            ->add('litros', 'integer', array(
+                'attr' => array(
+                        'class' => 'form-control col-md-7 col-xs-12',        
+                    ),
+                
+            ))
             ->add('precio', 'text', array(
                 'attr' => array(
                         'class' => 'form-control col-md-7 col-xs-12',        
