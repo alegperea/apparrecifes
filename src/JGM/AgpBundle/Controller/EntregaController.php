@@ -71,7 +71,6 @@ class EntregaController extends Controller {
                 $objproducto = $em->getRepository('AgpBundle:Producto')->find($producto);
                 $productoEntregaRef->setProducto($objproducto);
                 $productoEntregaRef->setEntrega($entity);
-                $productoEntregaRef->setCantidad($entity->getCliente()->getCantidadPermitida());  
                 $em->persist($productoEntregaRef);
                 $em->flush(); 
             endforeach; 
@@ -92,13 +91,13 @@ class EntregaController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $request = $this->get('request');
         $entity = $em->getRepository('AgpBundle:Entrega')->find($id);
-        if (file_get_contents("php://input")) {
+        /*if (file_get_contents("php://input")) {
             // read input stream
             $data = file_get_contents("php://input");
             exit("asdas");
             $this->canvasUpload($data);
             
-        }
+        }*/
         if ($request->getMethod() == 'POST') {      
             $this->setFlash('success', 'Se confirmo la entrega');
             return $this->redirect($this->generateUrl('entrega'));

@@ -38,7 +38,7 @@
                     </ul>
                     <div class="ln_solid col-md-12 col-sm-12 col-xs-12"></div>
 
-                    <div class="col-md-6 col-sm-12 col-xs-12">  
+                    <div class="col-md-12 col-sm-12 col-xs-12">  
                         <div class="x_panel">
                             <div class="x_title">
                                 <h2>Selección de productos</h2>
@@ -64,26 +64,40 @@
                                 <p>{{ entity.fecha | date('d-m-Y') }}</p>  
                                 <p>Contacto: {{ entity.cliente.contacto }}</p>
                                 <p>Dirección:  {{ entity.cliente.direccion }}</p> 
-                                <p>Lts a llevar:  <span class="label label-info">{{ entity.cliente.cantidadPermitida }}</span></p> 
                                 <p>Modalidad de pago:  <span class="label label-primary">{{ entity.cliente.modalidadPago }}</span></p> 
 
                                 {% if entity.descuentoEspecial %}
-                                    <span class="label label-success">Descuento especial</span>
+                                    <span class="label label-success">Descuento especial: {{ entity.descuentoEspecial }}</span>
                                 {% endif %}
                                 {% if entity.pagoRealizado %}
-                                    <span class="label label-success">Pago realizado</span>
+                                    <span class="label label-success">Pago realizado: {{ entity.pagoRealizado }}</span>
                                 {% endif %}
                                 {% if entity.limpiezaRealizada %}
-                                    <span class="label label-success">Limpieza realizada</span>
+                                    <span class="label label-success">Limpieza realizada: {{ entity.limpiezaRealizada }}</span>
                                 {% endif %}
-                                {% if entity.cambioCo2 %}
-                                    <span class="label label-success">Cambio Co2</span>
-                                {% endif %}   
+                                {% if entity.co2Entregados %}
+                                    <span class="label label-success">Co2 Entregados: {{ entity.co2Entregados }}</span>
+                                {% endif %} 
+                                {% if entity.co2Retirados %}
+                                    <span class="label label-success">Co2 Retirados: {{ entity.co2Retirados }}</span>
+                                {% endif %}
+                                {% if entity.co2Backup %}
+                                    <span class="label label-success">Co2 Backup: {{ entity.co2Backup }}</span>
+                                {% endif %}
+                                {% if entity.barrilesEntregados %}
+                                    <span class="label label-success">Barriles Entregados: {{ entity.barrilesEntregados }}</span>
+                                {% endif %} 
+                                {% if entity.barrilesRetirados %}
+                                    <span class="label label-success">Barriles Retirados: {{ entity.barrilesRetirados }}</span>
+                                {% endif %}
+                                {% if entity.barrilesCliente %}
+                                    <span class="label label-success">Barriles Backup: {{ entity.barrilesCliente }}</span>
+                                {% endif %}
                                 <ul class="to_do">
                                     {% for producto in entity.getProductos %} 
                                         <li>
                                             <p>
-                                                {{ producto.producto.nombre }}
+                                                {{ producto.producto.nombre }}, {{ producto.producto.litros }} lts.
                                             </p>
                                         </li>
                                     {% endfor %}
@@ -92,35 +106,7 @@
                         </div>
 
                     </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12 "> 
-                        <div class="x_panel">
-                            <div class="x_title">
-                                <h2>Firma</h2>
-                                <ul class="nav navbar-right panel_toolbox">
-                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                    </li>                                    
-                                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a aria-expanded="false" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="fa fa-wrench"></i></a>
-                                        <ul role="menu" class="dropdown-menu">
-                                            <li><a href="#">Settings 1</a>
-                                            </li>
-                                            <li><a href="#">Settings 2</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="x_content">                        
-                                <canvas id="canvas" style="border:1px solid;" width="280" height="150"></canvas></br> 
-                                <input type="color" id="color" value="#000">  
-                                <a class="btn btn-sm btn-info" id="bt-clear">limpiar</a>
-                            </div>
-                        </div>
-                    </div>
-
+                    
                     <div class="ln_solid col-md-12 col-sm-12 col-xs-12"></div>   
                     <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-10">

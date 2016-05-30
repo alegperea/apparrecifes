@@ -35,13 +35,6 @@ class ProductoEntregaReference
     */
     protected $entrega;
     
-    /**
-   * @var string
-   *
-   * @ORM\Column(name="cantidad", type="integer")
-   * @Assert\NotBlank(message="La cantidado no puede estar en blanco")
-   */
-   private $cantidad;
     
    
    function getId() {
@@ -56,10 +49,6 @@ class ProductoEntregaReference
        return $this->entrega;
    }
 
-   function getCantidad() {
-       return $this->cantidad;
-   }
-
    function setProducto($producto) {
        $this->producto = $producto;
    }
@@ -68,9 +57,7 @@ class ProductoEntregaReference
        $this->entrega = $entrega;
    }
 
-   function setCantidad($cantidad) {
-       $this->cantidad = $cantidad;
-   }
+
 
 
 }

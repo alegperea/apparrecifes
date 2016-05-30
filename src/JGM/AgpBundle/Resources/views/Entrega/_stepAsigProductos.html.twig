@@ -69,21 +69,35 @@
                                                 <p>{{ entity.fecha | date('d-m-Y') }}</p>  
                                                 <p>Contacto: {{ entity.cliente.contacto }}</p>
                                                 <p>Dirección:  {{ entity.cliente.direccion }}</p> 
-                                                <p>Lts a llevar:  <span class="label label-info">{{ entity.cliente.cantidadPermitida }}</span></p> 
                                                 <p>Modalidad de pago:  <span class="label label-primary">{{ entity.cliente.modalidadPago }}</span></p> 
 
                                                 {% if entity.descuentoEspecial %}
-                                                    <span class="label label-success">Descuento especial</span>
+                                                    <span class="label label-success">Descuento especial: {{ entity.descuentoEspecial }}</span>
                                                 {% endif %}
                                                 {% if entity.pagoRealizado %}
-                                                    <span class="label label-success">Pago realizado</span>
+                                                    <span class="label label-success">Pago realizado: {{ entity.pagoRealizado }}</span>
                                                 {% endif %}
                                                 {% if entity.limpiezaRealizada %}
-                                                    <span class="label label-success">Limpieza realizada</span>
+                                                    <span class="label label-success">Limpieza realizada: {{ entity.limpiezaRealizada }}</span>
                                                 {% endif %}
-                                                {% if entity.cambioCo2 %}
-                                                    <span class="label label-success">Cambio Co2</span>
-                                                {% endif %}                                
+                                                {% if entity.co2Entregados %}
+                                                    <span class="label label-success">Co2 Entregados: {{ entity.co2Entregados }}</span>
+                                                {% endif %} 
+                                                {% if entity.co2Retirados %}
+                                                    <span class="label label-success">Co2 Retirados: {{ entity.co2Retirados }}</span>
+                                                {% endif %}
+                                                {% if entity.co2Backup %}
+                                                    <span class="label label-success">Co2 Backup: {{ entity.co2Backup }}</span>
+                                                {% endif %}
+                                                {% if entity.barrilesEntregados %}
+                                                    <span class="label label-success">Barriles Entregados: {{ entity.barrilesEntregados }}</span>
+                                                {% endif %} 
+                                                {% if entity.barrilesRetirados %}
+                                                    <span class="label label-success">Barriles Retirados: {{ entity.barrilesRetirados }}</span>
+                                                {% endif %}
+                                                {% if entity.barrilesCliente %}
+                                                    <span class="label label-success">Barriles Backup: {{ entity.barrilesCliente }}</span>
+                                                {% endif %}
                                             </blockquote>
 
                                         </div>
@@ -117,7 +131,7 @@
                                                 {% for producto in productos %} 
                                                     <li>
                                                         <p>
-                                                            <input type="checkbox" class="flat" name="chk_productos[]" value="{{ producto.id }}"> {{ producto.nombre }} | <small> {{ producto.stock }} Lts.</small>
+                                                            <input type="checkbox" class="flat" name="chk_productos[]" value="{{ producto.id }}"> {{ producto.nombre }} | <small> {{ producto.litros }} Lts.</small>
                                                         </p>
                                                     </li>
                                                 {% endfor %}
