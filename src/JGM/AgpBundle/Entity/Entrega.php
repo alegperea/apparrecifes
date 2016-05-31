@@ -23,9 +23,9 @@ class Entrega {
     private $id;
 
     /**
-     * @var string
+     * @var date
      *
-     * @ORM\Column(name="fecha", type="date", length=255)
+     * @ORM\Column(name="fecha", type="date")
      * @Assert\NotBlank(message="La fecha no puede estar en blanco")
      */
     private $fecha;
