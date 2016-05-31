@@ -23,7 +23,7 @@ class Entrega {
     private $id;
 
     /**
-     * @var date
+    * @var \DateTime
      *
      * @ORM\Column(name="fecha", type="date")
      * @Assert\NotBlank(message="La fecha no puede estar en blanco")
