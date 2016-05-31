@@ -49,7 +49,7 @@ class EntregaController extends Controller {
             return $this->redirect($this->generateUrl('entrega_stepasigproductos', array('id' => $entity->getId())));
         }
 
-        return $this->render('AgpBundle:Entrega:new.html.twig', array(
+        return $this->render('AgpBundle:Entrega:_stepDatosCarga.html.twig', array(
                     'entity' => $entity,
                     'form' => $form->createView(),
         ));
