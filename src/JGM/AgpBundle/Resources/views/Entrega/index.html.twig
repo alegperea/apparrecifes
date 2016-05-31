@@ -20,7 +20,9 @@
                           <th>Descuento especial </th>   
                           <th>Pago realizado </th>  
                           <th>Limpieza realizada </th>
-                          <th>Cambio de Co2 </th>  
+                          <th>Co2 Entregados </th>  
+                          <th>Co2 Retirados </th> 
+                          <th>Co2 Backup </th> 
                           <th class=" no-link last"><span class="nobr">Action</span>
                           </th>
                         </tr>
@@ -33,7 +35,9 @@
                         <td><a href="{{ path('entrega_show', {'id':entity.id }) }}">{{ entity.descuentoEspecial }}</a></td>
                         <td><a href="{{ path('entrega_show', {'id':entity.id }) }}">{{ entity.pagoRealizado }}</a></td>
                         <td><a href="{{ path('entrega_show', {'id':entity.id }) }}">{{ entity.limpiezaRealizada }}</a></td>
-        
+                        <td><a href="{{ path('entrega_show', {'id':entity.id }) }}">{{ entity.co2Entregados }}</a></td>
+                        <td><a href="{{ path('entrega_show', {'id':entity.id }) }}">{{ entity.co2Retirados }}</a></td>
+                        <td><a href="{{ path('entrega_show', {'id':entity.id }) }}">{{ entity.co2Backup }}</a></td>
                         <td>
                           <a href="{{ path('entrega_show', {'id':entity.id }) }}">Mostrar</a>
                           <a href="{{ path('entrega_edit', {'id':entity.id }) }}">Editar</a>
