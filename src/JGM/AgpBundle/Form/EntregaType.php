@@ -19,7 +19,7 @@ class EntregaType extends AbstractType {
                 ->add('fecha', 'date', array(
                     'format' => 'dd/MM/yyyy',
                     'widget' => 'single_text',
-                    'label' => "Fecha de entrega",
+                    'label' => "Fecha de entrega (ej: 12/12/2016)",
                     'attr' => array(
                         'class' => 'form-control has-feedback-left col-md-7 col-xs-12',
                         'id' => '#single_cal2'
