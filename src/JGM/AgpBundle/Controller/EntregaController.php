@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use JGM\AgpBundle\Entity\Entrega;
 use JGM\AgpBundle\Form\EntregaType;
 use JGM\CoreBundle\DBAL\Types\AuditoriaType;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Entrega controller.
@@ -37,7 +38,7 @@ class EntregaController extends Controller {
         $entity = new Entrega();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
-  
+
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -46,69 +47,127 @@ class EntregaController extends Controller {
 
             $this->setFlash('success', 'Entrega creado correctamente');
 
-            return $this->redirect($this->generateUrl('entrega_stepasigproductos', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('entrega_stepcontrol', array('id' => $entity->getId())));
         }
 
-        return $this->render('AgpBundle:Entrega:_stepDatosCarga.html.twig', array(
+        return $this->render('AgpBundle:Entrega:_stepEntrega.html.twig', array(
                     'entity' => $entity,
                     'form' => $form->createView(),
         ));
     }
 
-     /**
+    public function stepEntregaAction() {
+        $em = $this->getDoctrine()->getManager();
+        $entity = new Entrega();
+        $form = $this->createCreateForm($entity);
+        $productos = $em->getRepository('AgpBundle:Producto')->findAll();
+        return $this->render('AgpBundle:Entrega:_stepEntrega.html.twig', array(
+                    'productos' => $productos,
+                    'form' => $form->createView(),
+        ));
+    }
+
+    /**
      * Displays a form to create a new Entrega entity.
      *
      */
-    public function stepAsigProductosAction($id) {
+    public function stepControlAction($id) {
         $request = $this->get('request');
         $em = $this->getDoctrine()->getManager();
-        $productos = $em->getRepository('AgpBundle:Producto')->findAll(); 
-        $entity = $em->getRepository('AgpBundle:Entrega')->find($id);        
-        if ($request->getMethod() == 'POST') {            
+
+        $entity = $em->getRepository('AgpBundle:Entrega')->find($id);
+        if ($request->getMethod() == 'POST') {
             $idproductos = $request->get('chk_productos');
-            foreach($idproductos as $producto):
+            foreach ($idproductos as $producto):
                 $productoEntregaRef = new \JGM\AgpBundle\Entity\ProductoEntregaReference();
                 $objproducto = $em->getRepository('AgpBundle:Producto')->find($producto);
                 $productoEntregaRef->setProducto($objproducto);
                 $productoEntregaRef->setEntrega($entity);
                 $em->persist($productoEntregaRef);
-                $em->flush(); 
-            endforeach; 
-            
-            $this->setFlash('success', 'Asignacion de productos correctamente');
-            return $this->redirect($this->generateUrl('entrega_stepconfirmfirma', array('id' => $entity->getId())));
+                $em->flush();
+            endforeach;
 
+            $this->setFlash('success', 'Asignacion de productos correctamente');
+            return $this->redirect($this->generateUrl('entrega_stepconfirma', array('id' => $entity->getId())));
         }
-        
+
         return $this->render('AgpBundle:Entrega:_stepAsigProductos.html.twig', array(
                     'entity' => $entity,
                     'productos' => $productos
-            
         ));
     }
-    
-    public function stepConfirmFirmaAction($id) {       
+
+    public function stepConfirmaAction($id) {
         $em = $this->getDoctrine()->getManager();
         $request = $this->get('request');
         $entity = $em->getRepository('AgpBundle:Entrega')->find($id);
-        /*if (file_get_contents("php://input")) {
-            // read input stream
-            $data = file_get_contents("php://input");
-            exit("asdas");
-            $this->canvasUpload($data);
-            
-        }*/
-        if ($request->getMethod() == 'POST') {      
+        /* if (file_get_contents("php://input")) {
+          // read input stream
+          $data = file_get_contents("php://input");
+          exit("asdas");
+          $this->canvasUpload($data);
+
+          } */
+        if ($request->getMethod() == 'POST') {
             $this->setFlash('success', 'Se confirmo la entrega');
             return $this->redirect($this->generateUrl('entrega'));
         }
-        return $this->render('AgpBundle:Entrega:_stepConfirmFirma.html.twig', array(
-                    'entity' => $entity            
+        return $this->render('AgpBundle:Entrega:_stepConfirma.html.twig', array(
+                    'entity' => $entity
         ));
     }
+
+    public function listAjaxAction() {
+        
+        $request = $this->get('request');
+        $em = $this->getDoctrine()->getManager();
+
+        $searchParameter = $request->request->get('id');        
+        //call repository function
+        $cliente = $em->getRepository('AgpBundle:Cliente')->find($searchParameter);
+
+        $productos = $em->getRepository('AgpBundle:Producto')->findAll();
+        $status = 'error';
+        $html = '';
+        if($productos){
+       //get the HTML markup corresponding to the table
+            $data = $this->render('AgpBundle:Entrega:_ajax_template.html.twig', array(
+                'productos' => $productos,
+                'cliente' => $cliente,
+            ));
+            $status = 'success';
+            $html = $data->getContent();
+        }
+        $jsonArray = array(
+            'status' => $status,
+            'data' => $html,
+        );
+ 
+               
+        $response = new Response(json_encode($jsonArray));
+        $response->headers->set('Content-Type', 'application/json; charset=utf-8');
+
+        return $response;
+    }
     
+    public function asignarProductoAction() {
+        
+        $request = $this->get('request');
+        $em = $this->getDoctrine()->getManager();
+
+        $searchParameter = $request->request->get('id');        
+        //call repository function
+        $producto = $em->getRepository('AgpBundle:Producto')->find($searchParameter);
+
+               
+        $response = new Response(json_encode($jsonArray));
+        $response->headers->set('Content-Type', 'application/json; charset=utf-8');
+
+        return $response;
+    }
+
     private function canvasUpload($data) {
-                            
+
         // filtering and decoding code adapted from
         // http://stackoverflow.com/questions/11843115/uploading-canvas-context-as-image-using-ajax-and-php?lq=1
         // Filter out the headers (data:,) part.
@@ -159,18 +218,6 @@ class EntregaController extends Controller {
         ));
 
         return $form;
-    }
-
-   
-    
-    public function stepDatosCargaAction() {
-        $entity = new Entrega();
-        $form = $this->createCreateForm($entity);
-
-        return $this->render('AgpBundle:Entrega:_stepDatosCarga.html.twig', array(
-                    'entity' => $entity,
-                    'form' => $form->createView(),
-        ));
     }
 
     /**

@@ -1,21 +1,21 @@
-entrega:
-    path:     /entrega
+entregalist:
+    path:     /entregalist
     defaults: { _controller: "AgpBundle:Entrega:index" }
 entrega_show:
     path:     /{id}/show
     defaults: { _controller: "AgpBundle:Entrega:show" }
 
-entrega_stepdatoscarga:
-    path:     /datoscarga
-    defaults: { _controller: "AgpBundle:Entrega:stepDatosCarga" }
+entrega_stepentrega:
+    path:     /entrega
+    defaults: { _controller: "AgpBundle:Entrega:stepEntrega" }
     
-entrega_stepasigproductos:
-    path:     /{id}/asigproductos
-    defaults: { _controller: "AgpBundle:Entrega:stepAsigProductos" }
+entrega_stepcontrol:
+    path:     /{id}/control
+    defaults: { _controller: "AgpBundle:Entrega:stepControl" }
     
-entrega_stepconfirmfirma:
+entrega_stepconfirma:
     path:     /{id}/confirmacion
-    defaults: { _controller: "AgpBundle:Entrega:stepConfirmFirma" }
+    defaults: { _controller: "AgpBundle:Entrega:stepConfirma" }
 
 entrega_create:
     path:     /create
@@ -40,3 +40,11 @@ entrega_delete:
     path:     /{id}/delete
     defaults: { _controller: "AgpBundle:Entrega:delete" }
     requirements: { _method: post|delete }
+    
+entrega_list_ajax:
+    path:     /listajax
+    defaults: { _controller: "AgpBundle:Entrega:listAjax" }
+    requirements: { _method: post }
+
+
+
