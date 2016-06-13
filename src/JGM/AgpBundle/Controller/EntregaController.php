@@ -56,13 +56,45 @@ class EntregaController extends Controller {
         ));
     }
 
-    public function stepEntregaAction() {
+    public function stepClienteAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
         $entity = new Entrega();
         $form = $this->createCreateForm($entity);
-        $productos = $em->getRepository('AgpBundle:Producto')->findAll();
-        return $this->render('AgpBundle:Entrega:_stepEntrega.html.twig', array(
-                    'productos' => $productos,
+        $form->handleRequest($request);
+
+        if ($request->getMethod() == 'POST') {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
+            $em->flush();
+
+            $this->setFlash('success', 'Cliente seleccionado');
+
+            return $this->redirect($this->generateUrl('entrega_stepproductos', array('id' => $entity->getId())));
+        }
+
+        return $this->render('AgpBundle:Entrega:_stepCliente.html.twig', array(
+                    'form' => $form->createView(),
+        ));
+    }
+
+    public function stepProductosAction(Request $request, $id) {
+        $em = $this->getDoctrine()->getManager();
+        $entity = new Entrega();
+        $form = $this->createCreateForm($entity);
+        $form->handleRequest($request);
+
+        if ($request->getMethod() == 'POST') {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
+
+            $this->setFlash('success', 'Cliente seleccionado');
+
+            return $this->redirect($this->generateUrl('entrega_stepproductos', array('id' => $entity->getId())));
+        }
+
+        return $this->render('AgpBundle:Entrega:_stepProductos.html.twig', array(
                     'form' => $form->createView(),
         ));
     }
@@ -118,19 +150,19 @@ class EntregaController extends Controller {
     }
 
     public function listAjaxAction() {
-        
+
         $request = $this->get('request');
         $em = $this->getDoctrine()->getManager();
 
-        $searchParameter = $request->request->get('id');        
+        $searchParameter = $request->request->get('id');
         //call repository function
         $cliente = $em->getRepository('AgpBundle:Cliente')->find($searchParameter);
 
         $productos = $em->getRepository('AgpBundle:Producto')->findAll();
         $status = 'error';
         $html = '';
-        if($productos){
-       //get the HTML markup corresponding to the table
+        if ($productos) {
+            //get the HTML markup corresponding to the table
             $data = $this->render('AgpBundle:Entrega:_ajax_template.html.twig', array(
                 'productos' => $productos,
                 'cliente' => $cliente,
@@ -142,24 +174,24 @@ class EntregaController extends Controller {
             'status' => $status,
             'data' => $html,
         );
- 
-               
+
+
         $response = new Response(json_encode($jsonArray));
         $response->headers->set('Content-Type', 'application/json; charset=utf-8');
 
         return $response;
     }
-    
+
     public function asignarProductoAction() {
-        
+
         $request = $this->get('request');
         $em = $this->getDoctrine()->getManager();
 
-        $searchParameter = $request->request->get('id');        
+        $searchParameter = $request->request->get('id');
         //call repository function
         $producto = $em->getRepository('AgpBundle:Producto')->find($searchParameter);
 
-               
+
         $response = new Response(json_encode($jsonArray));
         $response->headers->set('Content-Type', 'application/json; charset=utf-8');
 

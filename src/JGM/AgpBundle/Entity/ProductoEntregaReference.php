@@ -34,6 +34,7 @@ class ProductoEntregaReference
     * @ORM\ManyToOne(targetEntity="JGM\AgpBundle\Entity\Entrega", inversedBy="entrega")
     */
     protected $entrega;
+
     
     
    

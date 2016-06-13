@@ -18,7 +18,6 @@ class Version20160530210311 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE ProductoEntregaReference DROP cantidad');
     }
 
     /**
@@ -29,6 +28,5 @@ class Version20160530210311 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE ProductoEntregaReference ADD cantidad INT NOT NULL');
     }
 }

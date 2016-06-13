@@ -24,7 +24,7 @@ class EntregaType extends AbstractType {
                         'class' => 'form-control has-feedback-left col-md-12 col-xs-12',
                         'id' => '#single_cal2'
                     ),
-                ))
+                ))                
                 ->add('cliente', 'entity', array(
                     'class' => 'AgpBundle:Cliente',
                     'property' => 'nombre',

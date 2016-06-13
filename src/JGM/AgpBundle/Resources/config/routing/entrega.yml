@@ -5,9 +5,13 @@ entrega_show:
     path:     /{id}/show
     defaults: { _controller: "AgpBundle:Entrega:show" }
 
-entrega_stepentrega:
-    path:     /entrega
-    defaults: { _controller: "AgpBundle:Entrega:stepEntrega" }
+entrega_stepcliente:
+    path:     /cliente
+    defaults: { _controller: "AgpBundle:Entrega:stepCliente" }
+  
+entrega_stepproductos:
+    path:     /{id}/productos
+    defaults: { _controller: "AgpBundle:Entrega:stepProductos" }
     
 entrega_stepcontrol:
     path:     /{id}/control

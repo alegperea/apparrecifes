@@ -66,37 +66,37 @@ class Entrega {
 
     /**
      *
-     * @ORM\Column(name="co2_entregados", type="integer")
+     * @ORM\Column(name="co2_entregados", type="integer", nullable=true)
      */
     private $co2Entregados;
 
     /**
      *
-     * @ORM\Column(name="co2_retirados", type="integer")
+     * @ORM\Column(name="co2_retirados", type="integer", nullable=true)
      */
     private $co2Retirados;
 
     /**
      *
-     * @ORM\Column(name="co2_backup", type="integer")
+     * @ORM\Column(name="co2_backup", type="integer", nullable=true)
      */
     private $co2Backup;
 
     /**
      *
-     * @ORM\Column(name="barriles_entregados", type="integer")
+     * @ORM\Column(name="barriles_entregados", type="integer", nullable=true)
      */
     private $barrilesEntregados;
 
     /**
      *
-     * @ORM\Column(name="barriles_retirados", type="integer")
+     * @ORM\Column(name="barriles_retirados", type="integer", nullable=true)
      */
     private $barrilesRetirados;
 
     /**
      *
-     * @ORM\Column(name="barriles_cliente", type="integer")
+     * @ORM\Column(name="barriles_cliente", type="integer", nullable=true)
      */
     private $barrilesCliente;
 
