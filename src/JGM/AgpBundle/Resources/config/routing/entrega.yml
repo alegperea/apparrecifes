@@ -12,6 +12,14 @@ entrega_stepcliente:
 entrega_stepproductos:
     path:     /{id}/productos
     defaults: { _controller: "AgpBundle:Entrega:stepProductos" }
+
+entrega_asignarproducto:
+    path:     /{id}/{id_entrega}/asignarproducto
+    defaults: { _controller: "AgpBundle:Entrega:asignarProducto" }
+    
+entrega_removerproducto:
+    path:     /{id}/{id_entrega}/removerproducto
+    defaults: { _controller: "AgpBundle:Entrega:removerProducto" }
     
 entrega_stepcontrol:
     path:     /{id}/control

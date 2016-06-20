@@ -83,6 +83,8 @@ class EntregaController extends Controller {
         $entity = new Entrega();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
+        $productos = $em->getRepository('AgpBundle:Producto')->findAll();
+        $entrega = $em->getRepository('AgpBundle:Entrega')->find($id);
 
         if ($request->getMethod() == 'POST') {
 
@@ -95,7 +97,8 @@ class EntregaController extends Controller {
         }
 
         return $this->render('AgpBundle:Entrega:_stepProductos.html.twig', array(
-                    'form' => $form->createView(),
+                    'productos' => $productos,
+                    'entrega' => $entrega,
         ));
     }
 
@@ -182,20 +185,35 @@ class EntregaController extends Controller {
         return $response;
     }
 
-    public function asignarProductoAction() {
-
-        $request = $this->get('request');
+    public function asignarProductoAction($id, $id_entrega) {
         $em = $this->getDoctrine()->getManager();
+           //call repository function
+        $producto = $em->getRepository('AgpBundle:Producto')->find($id);
+        $entrega = $em->getRepository('AgpBundle:Entrega')->find($id_entrega);
 
-        $searchParameter = $request->request->get('id');
-        //call repository function
-        $producto = $em->getRepository('AgpBundle:Producto')->find($searchParameter);
+        $productoEntrega = new \JGM\AgpBundle\Entity\ProductoEntregaReference();
+        $productoEntrega->setEntrega($entrega);
+        $productoEntrega->setProducto($producto);
 
+        $em->persist($productoEntrega);
+        $em->flush();
 
-        $response = new Response(json_encode($jsonArray));
-        $response->headers->set('Content-Type', 'application/json; charset=utf-8');
+        $this->setFlash('success', 'Cliente seleccionado');
 
-        return $response;
+        return $this->redirect($this->generateUrl('entrega_stepproductos', array('id' => $id_entrega)));
+    }
+    
+    public function removerProductoAction($id, $id_entrega) {
+        $em = $this->getDoctrine()->getManager();
+           //call repository function
+        $productoEntrega = $em->getRepository('AgpBundle:ProductoEntregaReference')->findByProductoEntrega($id, $id_entrega);
+          
+        $em->remove($productoEntrega[0]);
+        $em->flush();
+
+        $this->setFlash('success', 'Cliente seleccionado');
+
+        return $this->redirect($this->generateUrl('entrega_stepproductos', array('id' => $id_entrega)));
     }
 
     private function canvasUpload($data) {
