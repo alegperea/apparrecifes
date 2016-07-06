@@ -67,6 +67,8 @@ class EntregaController extends Controller {
         if ($request->getMethod() == 'POST') {
 
             $em = $this->getDoctrine()->getManager();
+            $fecha = new \DateTime("11-11-1111");
+            $entity->setFecha($fecha);
             $em->persist($entity);
             $em->flush();
 
