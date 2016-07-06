@@ -2,10 +2,12 @@
 {% if tipo_mensajes|length > 0 %}
     {% for key,  messages in tipo_mensajes %}
         {% for  message in messages %}
-            <div class="alert alert-{{ key }} alert-dismissible fade in{% if key == "error" %} alert-danger{% endif %}">
-                <button class="close" data-dismiss="alert" href="#"><span aria-hidden="true">×</span></button>
-                {{ message |raw}}
-            </div>
+  
+            <div role="alert" class="alert alert-{{ key }} alert-dismissible fade in{% if key == "error" %} alert-danger{% endif %}">
+                  <button aria-label="Close" data-dismiss="alert" class="close" type="button"><span aria-hidden="true">×</span>
+                  </button>
+                  <strong>Atención!</strong> {{ message |raw}}.
+                </div>
         {% endfor %}
     {% endfor %}
 {% endif %}

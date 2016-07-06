@@ -2,52 +2,51 @@
 
 
 {% block contenido %}
-<div class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2>Listado de entregas</h2>
-                <a href="{{ path('entrega_stepentrega') }}" class="pull-right btn btn-dark"> <i class="glyphicon glyphicon-file">
-                                                                </i> Nueva entrega </a>
-                 <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <table id="example" class="table table-striped responsive-utilities jambo_table">
-                    <thead>
-                        <tr class="headings">            
-                          <th>Fecha </th>
-                          <th>Cliente </th>          
-                          <th>Descuento especial </th>   
-                          <th>Pago realizado </th>  
-                          <th>Limpieza realizada </th>
-                          <th>Co2 Entregados </th>  
-                          <th>Co2 Retirados </th> 
-                          <th>Co2 Backup </th> 
-                          <th class=" no-link last"><span class="nobr">Action</span>
-                          </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                      {% for entity in entities %}
-                      <tr>
-                        <td><a href="{{ path('entrega_show', {'id':entity.id }) }}">{{ entity.fecha | date('d/m/Y')}}</a></td>
-                        <td><a href="{{ path('entrega_show', {'id':entity.id }) }}">{{ entity.cliente.getNombre }}</a></td>
-                        <td><a href="{{ path('entrega_show', {'id':entity.id }) }}">{{ entity.descuentoEspecial }}</a></td>
-                        <td><a href="{{ path('entrega_show', {'id':entity.id }) }}">{{ entity.pagoRealizado }}</a></td>
-                        <td><a href="{{ path('entrega_show', {'id':entity.id }) }}">{{ entity.limpiezaRealizada }}</a></td>
-                        <td><a href="{{ path('entrega_show', {'id':entity.id }) }}">{{ entity.co2Entregados }}</a></td>
-                        <td><a href="{{ path('entrega_show', {'id':entity.id }) }}">{{ entity.co2Retirados }}</a></td>
-                        <td><a href="{{ path('entrega_show', {'id':entity.id }) }}">{{ entity.co2Backup }}</a></td>
-                        <td>
-                          <a href="{{ path('entrega_show', {'id':entity.id }) }}">Mostrar</a>
-                          <a href="{{ path('entrega_edit', {'id':entity.id }) }}">Editar</a>
-                        </td>
-                      </tr>
-                    {% endfor %}
-                  </tbody>
-                </table>
-            </div>
-        </diV>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Listado de entregas</h2>
+                    <a href="{{ path('entrega_stepcliente') }}" class="pull-right btn btn-dark"> <i class="glyphicon glyphicon-file">
+                        </i> Nueva entrega </a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    {% include ":includes:flashes.html.twig" %}
+                    <table id="example" class="table table-striped responsive-utilities jambo_table">
+                        <thead>
+                            <tr class="headings">            
+                                <th>Fecha </th>
+
+                                <th>Pago realizado </th>
+                                <th>Deuda </th>  
+                                <th>Limpieza realizada </th>
+
+                                <th>Cliente </th> 
+                                <th class=" no-link last"><span class="nobr">Action</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for entity in entities %}
+                                <tr>
+                                    <td><a href="{{ path('entrega_show', {'id':entity.id }) }}">{{ entity.fecha | date('d/m/Y')}}</a></td>
+                                    <td><a href="{{ path('entrega_show', {'id':entity.id }) }}"><span class="label label-success">$ {{ entity.pagoRealizado }}</span></a></td>
+                                    <td><a href="{{ path('entrega_show', {'id':entity.id }) }}"><span class="label label-danger">$ {{ entity.deuda }}</span></a></td>
+                                    <td><a href="{{ path('entrega_show', {'id':entity.id }) }}">{{ entity.limpiezaRealizada }}</a></td>
+                                    <td><span class="label label-info">{{ entity.cliente.nombre }}</span></td>
+                                    <td>
+                                        <div class="btn-group" role="group" aria-label="...">
+                                            <a class="btn-sm btn-primary" href="{{ path('entrega_show', {'id':entity.id }) }}">Mostrar</a>
+                                            <a class="btn-sm btn-warning" href="{{ path('entrega_edit', {'id':entity.id }) }}">Editar</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </diV>
+        </div>
     </div>
-</div>
 {% endblock %}

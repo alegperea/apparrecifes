@@ -8,7 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Doctrine\ORM\EntityRepository;
 use JGM\AgpBundle\Entity\Cliente;
 
-class EntregaType extends AbstractType {
+class EntregacliType extends AbstractType {
 
     /**
      * @param FormBuilderInterface $builder

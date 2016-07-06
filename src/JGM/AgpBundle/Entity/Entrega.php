@@ -23,7 +23,7 @@ class Entrega {
     private $id;
 
     /**
-    * @var \DateTime
+     * @var \DateTime
      *
      * @ORM\Column(name="fecha", type="date")
      * @Assert\NotBlank(message="La fecha no puede estar en blanco")
@@ -60,25 +60,31 @@ class Entrega {
 
     /**
      *
-     * @ORM\Column(name="limpieza_realizada", type="integer", nullable=true)
+     * @ORM\Column(name="limpieza_realizada", type="string", nullable=true)
      */
     private $limpiezaRealizada;
 
     /**
      *
-     * @ORM\Column(name="co2_entregados", type="integer", nullable=true)
+     * @ORM\Column(name="co2_entregados", type="boolean", nullable=true)
      */
     private $co2Entregados;
 
     /**
      *
-     * @ORM\Column(name="co2_retirados", type="integer", nullable=true)
+     * @ORM\Column(name="co2_cambio", type="boolean", nullable=true)
+     */
+    private $co2Cambio;
+
+    /**
+     *
+     * @ORM\Column(name="co2_retirados", type="boolean", nullable=true)
      */
     private $co2Retirados;
 
     /**
      *
-     * @ORM\Column(name="co2_backup", type="integer", nullable=true)
+     * @ORM\Column(name="co2_backup", type="boolean", nullable=true)
      */
     private $co2Backup;
 
@@ -105,8 +111,6 @@ class Entrega {
      * @ORM\Column(name="observacion", type="text", nullable=true)
      */
     private $observacion;
-    
-    
 
     function getId() {
         return $this->id;
@@ -223,13 +227,20 @@ class Entrega {
     function setBarrilesCliente($barrilesCliente) {
         $this->barrilesCliente = $barrilesCliente;
     }
-    
+
     function getBarrilesEntregados() {
         return $this->barrilesEntregados;
     }
 
     function setBarrilesEntregados($barrilesEntregados) {
         $this->barrilesEntregados = $barrilesEntregados;
+    }
+    function getCo2cambio() {
+        return $this->co2Cambio;
+    }
+
+    function setCo2cambio($co2cambio) {
+        $this->co2cambio = $co2cambio;
     }
 
 

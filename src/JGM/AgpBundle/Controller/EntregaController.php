@@ -59,7 +59,9 @@ class EntregaController extends Controller {
     public function stepClienteAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
         $entity = new Entrega();
-        $form = $this->createCreateForm($entity);
+        $formType = new \JGM\AgpBundle\Form\EntregacliType();
+        
+        $form = $this->createCreateForm($entity, $formType);
         $form->handleRequest($request);
 
         if ($request->getMethod() == 'POST') {
@@ -80,21 +82,9 @@ class EntregaController extends Controller {
 
     public function stepProductosAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
-        $entity = new Entrega();
-        $form = $this->createCreateForm($entity);
-        $form->handleRequest($request);
+
         $productos = $em->getRepository('AgpBundle:Producto')->findAll();
         $entrega = $em->getRepository('AgpBundle:Entrega')->find($id);
-
-        if ($request->getMethod() == 'POST') {
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-
-            $this->setFlash('success', 'Cliente seleccionado');
-
-            return $this->redirect($this->generateUrl('entrega_stepproductos', array('id' => $entity->getId())));
-        }
 
         return $this->render('AgpBundle:Entrega:_stepProductos.html.twig', array(
                     'productos' => $productos,
@@ -109,26 +99,25 @@ class EntregaController extends Controller {
     public function stepControlAction($id) {
         $request = $this->get('request');
         $em = $this->getDoctrine()->getManager();
+        $entrega = $em->getRepository('AgpBundle:Entrega')->find($id);
+        $formType = new \JGM\AgpBundle\Form\EntregacontrolType();
+        $form = $this->createCreateForm($entrega, $formType);
+        $form->handleRequest($request);
 
-        $entity = $em->getRepository('AgpBundle:Entrega')->find($id);
         if ($request->getMethod() == 'POST') {
-            $idproductos = $request->get('chk_productos');
-            foreach ($idproductos as $producto):
-                $productoEntregaRef = new \JGM\AgpBundle\Entity\ProductoEntregaReference();
-                $objproducto = $em->getRepository('AgpBundle:Producto')->find($producto);
-                $productoEntregaRef->setProducto($objproducto);
-                $productoEntregaRef->setEntrega($entity);
-                $em->persist($productoEntregaRef);
-                $em->flush();
-            endforeach;
 
-            $this->setFlash('success', 'Asignacion de productos correctamente');
-            return $this->redirect($this->generateUrl('entrega_stepconfirma', array('id' => $entity->getId())));
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entrega);
+            $em->flush();
+
+            $this->setFlash('success', 'Se completo la entrega');
+
+            return $this->redirect($this->generateUrl('entregalist'));
         }
 
-        return $this->render('AgpBundle:Entrega:_stepAsigProductos.html.twig', array(
-                    'entity' => $entity,
-                    'productos' => $productos
+        return $this->render('AgpBundle:Entrega:_stepControl.html.twig', array(
+                    'entrega' => $entrega,
+                    'form' => $form->createView()
         ));
     }
 
@@ -187,7 +176,7 @@ class EntregaController extends Controller {
 
     public function asignarProductoAction($id, $id_entrega) {
         $em = $this->getDoctrine()->getManager();
-           //call repository function
+        //call repository function
         $producto = $em->getRepository('AgpBundle:Producto')->find($id);
         $entrega = $em->getRepository('AgpBundle:Entrega')->find($id_entrega);
 
@@ -202,12 +191,12 @@ class EntregaController extends Controller {
 
         return $this->redirect($this->generateUrl('entrega_stepproductos', array('id' => $id_entrega)));
     }
-    
+
     public function removerProductoAction($id, $id_entrega) {
         $em = $this->getDoctrine()->getManager();
-           //call repository function
+        //call repository function
         $productoEntrega = $em->getRepository('AgpBundle:ProductoEntregaReference')->findByProductoEntrega($id, $id_entrega);
-          
+
         $em->remove($productoEntrega[0]);
         $em->flush();
 
@@ -261,8 +250,8 @@ class EntregaController extends Controller {
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Entrega $entity) {
-        $form = $this->createForm(new EntregaType(), $entity, array(
+    private function createCreateForm(Entrega $entity, $formType) {
+        $form = $this->createForm($formType, $entity, array(
             'action' => $this->generateUrl('entrega_create'),
             'method' => 'POST',
         ));

@@ -1,0 +1,143 @@
+{% extends 'AgpBundle:Default:_layout.html.twig' %}
+
+{% block contenido %}
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">       
+                <div class="x_title">
+                    <h2>Nueva entrega</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    <div id="wizard" class="form_wizard wizard_horizontal">
+                        <ul class="wizard_steps">
+                            <li>
+                                <a href="#step-1" >
+                                    <span class="step_no">1</span>
+                                    <span class="step_descr">
+                                        Cliente                                       
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#step-2" class="selected">
+                                    <span class="step_no">2</span>
+                                    <span class="step_descr">
+                                        Productos
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#step-3">
+                                    <span class="step_no">3</span>
+                                    <span class="step_descr">
+                                        Control
+                                    </span>
+                                </a>
+                            </li>
+
+                        </ul>
+                        <div class="ln_solid"></div> 
+                        <div id="step-1">
+                            <div class="col-md-6 col-xs-6">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>Selección de productos</h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                            </li>                                    
+                                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                            </li>
+                                            <li class="dropdown">
+                                                <a aria-expanded="false" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="fa fa-wrench"></i></a>
+                                                <ul role="menu" class="dropdown-menu">
+                                                    <li><a href="#">Settings 1</a>
+                                                    </li>
+                                                    <li><a href="#">Settings 2</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <ul class="to_do">
+                                            {% for producto in productos %} 
+                                                <li>
+                                                    <p><a href="{{ path('entrega_asignarproducto', { 'id': producto.id, 'id_entrega': entrega.id }) }}" class="guardar btn btn-success">
+                                                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+
+
+                                                        </a>
+                                                        {{ producto.nombre }}, {{ producto.litros }} lts.
+                                                    </p>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+
+
+                                    </div>
+                                    <div class="clearfix"></div>
+
+
+                                </div>
+                            </div>    
+                            <div class="col-md-6 col-xs-6">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>Productos asignados a la entrega</h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                            </li>                                    
+                                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                            </li>
+                                            <li class="dropdown">
+                                                <a aria-expanded="false" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="fa fa-wrench"></i></a>
+                                                <ul role="menu" class="dropdown-menu">
+                                                    <li><a href="#">Settings 1</a>
+                                                    </li>
+                                                    <li><a href="#">Settings 2</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <ul class="to_do">
+                                            {% for producto in entrega.getProductos %} 
+                                                <li>
+                                                    <p><a href="{{ path('entrega_removerproducto', { 'id': producto.getProducto.id, 'id_entrega': entrega.id }) }}" class="guardar btn btn-danger">
+                                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                                        </a>
+                                                        {{ producto.getProducto.nombre }}, {{ producto.getProducto.litros }} lts.
+                                                    </p>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+
+
+                                    </div>
+                                    <div class="clearfix"></div>
+
+
+                                </div>
+                            </div> 
+
+
+
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-10">
+                                    <a href="{{ path('entregalist') }}" class="guardar btn btn-primary">Volver</a>
+                                    <a id="bt-save" href="{{ path('entrega_stepcontrol', { 'id': entrega.id }) }}" class="guardar btn btn-success" >Siguente </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endblock %}
