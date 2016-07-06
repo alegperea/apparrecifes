@@ -66,8 +66,10 @@ class EntregaController extends Controller {
 
         if ($request->getMethod() == 'POST') {
 
-            $em = $this->getDoctrine()->getManager();     
-            $fecha = new \Date($request->request->get('jgm_agpbundle_entrega')['fecha']);
+            $em = $this->getDoctrine()->getManager();   
+            $datetime = new \DateTime();
+            $fecha = $datetime->createFromFormat('d-m-Y', $request->request->get('jgm_agpbundle_entrega')['fecha']);
+            
             $entity->setFecha($fecha);
             $em->persist($entity);
             $em->flush();
